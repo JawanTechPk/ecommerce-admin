@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+:root {
+  --main-color: #008c8c;
+  --hover-color: #00bfbf;
+  --font: "Poppins", sans-serif;
+  --whiteBackcolor: #fff;
+  --greyBackcolor: #e5e5e5;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+Firefox
+input[type="number"] {
+  -moz-appearance: textfield;
+} */
+
+.mainContainer {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 20px 90px 20px 90px;
+  background-color: var(--greyBackcolor);
+}
+
+.leftContainer {
+  height: 100%;
+  width: 50%;
+  background-color: var(--whiteBackcolor);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 100px 60px;
+}
+
+/* .innerLeftContainer {
+  margin-top: 25%;
+} */
+
+.rightContainer {
+  height: 100%;
+  width: 50%;
+  background-color: var(--main-color);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rightContainer img {
+  width: 80%;
+}
+
+.leftContainer .logo {
+  font-size: 45px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftContainer .heading {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--main-color);
+}
+
+.leftContainer .heading p {
+  margin-bottom: 0px !important;
+}
+
+/* Placeholder styling */
+::placeholder {
+  color: black;
+  opacity: 0.5; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: black;
+  opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: black;
+  opacity: 0.5;
+}
+
+/* ---------- */
+
+.inputs label {
+  font-size: 14px;
+  font-weight: 100;
+  color: var(--main-color);
+  margin-top: 30px;
+}
+
+.inputs input[type="text"],
+.inputs input[type="password"] {
+  background-color: #f2eded;
+  width: 100%;
+  height: 50px;
+  border: 0px;
+  border-radius: 10px;
+  padding: 20px;
+  font-size: 14px;
+  font-weight: normal !important;
+  color: var(--main-color);
+}
+
+.inputs input[type="text"],
+.inputs input[type="password"]:focus {
+  outline: none;
+}
+
+.inputs input[type="text"] {
+  /* margin-bottom: 30px; */
+}
+
+.showOrhide {
+  margin-left: -35px;
+  cursor: pointer;
+  margin-top: -10px;
+}
+
+.inputs span > a {
+  display: block;
+  text-align: right;
+  color: var(--main-color) !important;
+  margin-top: 6px;
+}
+
+.loginFooter {
+  text-align: center;
+  color: var(--main-color);
+  font-size: 12px;
+}
+
+.loginFooter a {
+  text-align: center;
+  color: #08b0f8;
+}
+
+.submitBtnStl {
+  align-items: center;
+  background-color: #008c8c;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 980px) {
+  .mainContainer {
+    padding: 10px;
+  }
+
+  .leftContainer {
+    width: 100%;
+    border-radius: 20px;
+    padding: 40px 40px;
+  }
+
+  .rightContainer {
+    width: 0%;
+  }
+}

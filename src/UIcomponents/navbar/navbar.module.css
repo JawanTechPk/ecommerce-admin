@@ -1,0 +1,28 @@
+.navbarContainer {
+  background-color: var(--main-color) !important;
+  color: white !important;
+}
+
+.navbar {
+  background-color: var(--main-color) !important;
+}
+
+.logoText {
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  letter-spacing: 2px !important;
+  cursor: pointer;
+}
+
+.loginButton {
+  border: 2px solid white;
+  padding: 6px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.loginButton:hover {
+  background-color: var(--hover-color);
+  padding: 7px 32px;
+  transition: 0.2s;
+}
