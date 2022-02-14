@@ -159,7 +159,20 @@ input[type="number"] {
 
 .submitBtnStl {
   align-items: center;
-  background-color: #008c8c;
+  background-color: #008c8c !important;
+  width: 80%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 10px;
+  font-weight: normal;
+  font-size: 14px;
+}
+.submitBtnStl:hover {
+  align-items: center;
+  background-color: #008c8c !important;
   width: 80%;
   margin-top: 10px;
   margin-bottom: 10px;

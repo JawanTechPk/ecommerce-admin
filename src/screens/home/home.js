@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../store/actions/userAction/UserAuthAction';
 import { saveEditCatToRedux, updTagAction, addTagAction, getAllTags, getAllCategory, deleteTagAction, deleteCategoryAction } from '../../store/actions/settingAction/settingAction';
 import { BsPersonCircle, BsThreeDotsVertical } from "react-icons/bs";
-import { DragDropContext,Droppable,Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Loader from '../../UIcomponents/loader/loader';
 import AddCategory from '../addCategory/addCategory';
 
@@ -19,6 +19,11 @@ const Home = () => {
     const { user } = useSelector((state) => state.userLoginReducer)
     const { isLoadingTag, isLoading, categories, allTags } = useSelector((state) => state.settingReducer)
     const [characters, updateCharacters] = useState(categories);
+    const [cateTags, setCatetag] = useState(true)
+    const [searchCatText, setSearchCatText] = useState("");
+    const [searchTagText, setSearchTagText] = useState("");
+    const [searchCatArr, setSearchCatArr] = useState(categories);
+    const [searchTagArr, setSearchTagArr] = useState(allTags);
 
     useEffect(() => {
         dispatch(getAllTags())
@@ -52,100 +57,138 @@ const Home = () => {
         history.push('/editcategory')
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         updateCharacters(categories);
-    },[categories])
-    const handleOnDragEnd=(result)=>{
-        console.log(result,'result');
+    }, [categories])
+
+    const handleOnDragEnd = (result) => {
+        console.log(result, 'result');
         if (!result.destination) return;
         const items = Array.from(characters);
-const [reorderedItem] = items.splice(result.source.index, 1);
-items.splice(result.destination.index, 0, reorderedItem);
-updateCharacters(items);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        updateCharacters(items);
     }
-    
+
+
+    const searchCategories = (e) => {
+        setSearchCatText(e.target.value);
+        if (e.target.value.trim().length > 0) {
+            const abc = categories.filter((obj) => JSON.stringify(obj).toLowerCase().includes(e.target.value.toLowerCase()));
+            setSearchCatArr(abc)
+        } else {
+            setSearchCatArr(categories);
+        }
+    }
+
+    const searchTag = (e) => {
+        setSearchTagText(e.target.value);
+        if (e.target.value.trim().length > 0) {
+            const abc = allTags.filter((obj) => JSON.stringify(obj).toLowerCase().includes(e.target.value.toLowerCase()));
+            setSearchTagArr(abc)
+        } else {
+            setSearchTagArr(allTags)
+        }
+    }
+
 
     return (
         <div >
             <Navbar />
             <div className="container">
-                <div>
-                    <h2 className={Css.mainHead}>Renting Admin</h2>
-                    <h3>Categories </h3>
-                    <h4>Add New Category</h4>
-                    <AddCategory />
-                    <div className="container">
-                    <DragDropContext onDragEnd={handleOnDragEnd}>
-                    <Droppable droppableId="characters">
-    {(provided) => (
-                        <div className="characters" {...provided.droppableProps} ref={provided.innerRef} style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
 
-                            {isLoading ?
-                                <Loader />
-                                :
-                                characters && characters.length > 0 && characters.map((val, ind) => {
-                                    // console.log(val, 'cal')
-                                    return  <Draggable key={val._id} draggableId={val._id} index={ind}>
-                                    {(provided) => (<div className={Css.cateDiv} ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
-                                        <div className={Css.dropdown} >
-                                            <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
-                                            <div className={Css.dropdownContent}>
-                                                <a onClick={() => toEditCategory(val, ind)}>Edit</a>
-                                                <a onClick={() => { deleteCategory(val._id, ind) }} >Delete</a>
-                                            </div>
-                                        </div>
-                                        <div style={{ padding: 10 }}>
-                                            <img src={val.image} className={Css.cateImg} />
-                                            <h6 className={Css.catName}>{val.category_name.split(" ").join("\n")}</h6>
-                                        </div>
-                                    </div>
-                                     )}
-                                     </Draggable>
-                                })
-                            }
-                        </div>
-                            )}
-                            </Droppable>
-                        </DragDropContext>
-                    </div>
+                <div className={`${Css.tabbed}`}>
+                    <input type="radio" id="tab21" name="css-tabs2" onClick={() => setCatetag(true)} defaultChecked />
+                    <input type="radio" id="tab22" name="css-tabs2" onClick={() => setCatetag(false)} />
+
+                    <ul className={`${Css.tabs}`}>
+                        <li className={`${Css.tab}`}><label htmlFor="tab21">Categories</label></li>
+                        <li className={`${Css.tab}`}><label htmlFor="tab22">Tags</label></li>
+                    </ul>
+
                 </div>
+                {
+                    cateTags ?
+                        <>
+                            <div style={{ marginTop: 90 }}>
+                                <h3>Categories </h3>
+                                <h4>Add New Category</h4>
+                                <AddCategory />
+                                <div className="container">
+                                    <input placeholder="Search Category" maxLength={15} type="text" value={searchCatText} onChange={(e) => { searchCategories(e) }} className={Css.cateInp} />
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
 
+                                        {isLoading ?
+                                            <Loader />
+                                            :
+                                            searchCatArr && searchCatArr.length > 0 && searchCatArr.map((val, ind) => {
+                                                return (<div className={Css.cateDiv} key={ind}>
+                                                    <div className={Css.dropdown} >
+                                                        <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
+                                                        <div className={Css.dropdownContent}>
+                                                            <a onClick={() => toEditCategory(val, ind)}>Edit</a>
+                                                            <a onClick={() => { deleteCategory(val._id, ind) }} >Delete</a>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ padding: 10 }}>
+                                                        <img src={val.image} className={Css.cateImg} />
+                                                        <h6 className={Css.catName}>{val.category_name.split(" ").join("\n")}</h6>
+                                                    </div>
+                                                </div>
+                                                )
 
-                <div>
-                    <h3 className={Css.tagHead}>Tags</h3>
-                    <h4>Add New Tag</h4>
-                    <div style={{ display: 'fex', }}>
-                        <form style={{ display: 'inline' }} onSubmit={addTag}>
-                            <input type="text" maxLength={15} value={tagName} onChange={(e) => setTagName(e.target.value)} className={Css.tagInp} required />
-                            {isLoadingTag ?
+                                            })
+                                        }
 
-                                <Loader />
-
-                                :
-                                <input type="submit" value="Add Tag" className={Css.addBtnStl} />
-                            }
-                        </form>
-                    </div>
-                    <div className="container">
-                        <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
-                            {
-                                allTags && allTags.length > 0 && allTags.map((val, ind) => {
-                                    return <div className={Css.tagDiv}>
-                                        <div className={Css.dropdown}>
-                                            <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
-                                            <div className={Css.dropdownContent}>
-                                                <a data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop" onClick={() => { setTagNameUpd(true); setTagName(val.name); setTagUpdData({ ...val, ind }) }}>Edit</a>
-                                                <a onClick={() => { deleteTag(val.id, ind) }}>Delete</a>
-                                            </div>
-                                        </div>
-                                        <h6 className={Css.tagName}>{val.name}</h6>
                                     </div>
-                                })
-                            }
+
+
+                                </div>
+                            </div>
+
+                        </>
+                        :
+                        <div >
+                            <h3 className={Css.tagHead}>Tags</h3>
+                            <h4>Add New Tag</h4>
+                            <div style={{ display: 'fex', }}>
+                                <form style={{ display: 'inline' }} onSubmit={addTag}>
+                                    <input placeholder="Tag Name" type="text" maxLength={15} value={tagName} onChange={(e) => setTagName(e.target.value)} className={Css.tagInp} required />
+                                    {isLoadingTag ?
+
+                                        <Loader />
+
+                                        :
+                                        <input type="submit" value="Add Tag" className={Css.addBtnStl} />
+                                    }
+                                </form>
+                            </div>
+                            <div className="container">
+                                <input placeholder="Search Tag" maxLength={15} type="text" value={searchTagText} onChange={(e) => { searchTag(e) }} className={Css.cateInp} />
+                                <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
+                                    {
+                                        searchTagArr && searchTagArr.length > 0 && searchTagArr.map((val, ind) => {
+                                            return <div className={Css.tagDiv} key={ind}>
+                                                <div className={Css.dropdown}>
+                                                    <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
+                                                    <div className={Css.dropdownContent}>
+                                                        <a data-bs-toggle="modal"
+                                                            data-bs-target="#staticBackdrop" onClick={() => { setTagNameUpd(true); setTagName(val.name); setTagUpdData({ ...val, ind }) }}>Edit</a>
+                                                        <a onClick={() => { deleteTag(val.id, ind) }}>Delete</a>
+                                                    </div>
+                                                </div>
+                                                <h6 className={Css.tagName}>{val.name}</h6>
+                                            </div>
+                                        })
+                                    }
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
+                }
+
+
+
 
                 <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">

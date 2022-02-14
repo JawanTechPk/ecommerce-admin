@@ -1,0 +1,29 @@
+.addCatDiv{
+    display:flex; margin-top: 38px;
+}
+
+.addBtnStl{
+    background-color: var(--main-color) !important;
+    color:white;
+    height:52px;
+    padding: 10px;
+    width: 20%;
+    font-size: 1.3vw;
+    /* margin-top: 38px; */
+    margin-left: 3%;
+    font-weight: bold;
+    border-radius: 10px;
+
+}
+@media screen and (max-width: 380px) {
+    .addCatDiv{
+        display:block
+    }
+    }
+    
+    
+    @media screen and (max-width: 860px) {
+        .addCatDiv{
+            display:block
+        }
+        }

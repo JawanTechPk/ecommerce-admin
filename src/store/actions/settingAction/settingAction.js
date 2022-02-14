@@ -227,8 +227,8 @@ dispatch({
 dispatch({
   type:ActionType.UPDATE_CATEGORY_DATA_START,
 })
-let {admin_ref,_id,category_name,image}= editCategoryData
-let obj = { admin_ref,category_name,image,position:0 }
+let {admin_ref,_id,category_name,image,position}= editCategoryData
+let obj = { admin_ref,category_name,image,position}
 axios.post(`${baseUrl}category/${_id}`,obj)
   .then((success) => {
       console.log(success,'success')

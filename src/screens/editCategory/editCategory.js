@@ -14,6 +14,7 @@ const EditCategory = () => {
     const dispatch = useDispatch();
 const [addImage,setAddImage]= useState('');
 const [catText,setCatText]= useState('');
+const [catPosi,setCatPosi]= useState('');
 const { user } = useSelector((state) => state.userLoginReducer)
 const { isLoadingImg,uploadCatImg,editCategory } = useSelector((state) => state.settingReducer)
 
@@ -28,7 +29,7 @@ const editCategoryData =()=>{
     }
     else{
         console.log('sadkahsdka')
-        dispatch(updateCatDataAction({...editCategory,category_name:catText,admin_ref:user.userId}));
+        dispatch(updateCatDataAction({...editCategory,position:catPosi,category_name:catText,admin_ref:user.userId}));
         setCatText('')
     }
 }
@@ -51,7 +52,8 @@ const editImg=(img)=>{
 
 useEffect(()=>{
 setCatText(editCategory.category_name);
-setAddImage(editCategory.image)
+setAddImage(editCategory.image);
+setCatPosi(editCategory.position)
 },[])
 
     console.log(editCategory,'addImage')
@@ -64,14 +66,27 @@ setAddImage(editCategory.image)
     
                   <ToastContainer />
             <div className={Css.mainContainer}>
+<div className={Css.addCatDiv}>
 
-<input  type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} style={{width:200,height:50,backgroundColor:'#f8f6f6'}}/>
+<input  type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} style={{ width:'20%',
+    borderRadius:10,
+    height:50,
+    paddingLeft:10,
+    backgroundColor:'#f2eded',
+    border: 'none'}}/>
+<input  type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} style={{ width:'20%',
+    borderRadius:10,
+    height:50,
+    paddingLeft:10,
+    marginLeft:10,
+    backgroundColor:'#f2eded',
+    border: 'none'}}/>
 
 <input type="file" className="uploadCV"
   style={{
       border: "1px dotted #006838",
       padding: 8,
-      marginLeft:10,
+      marginLeft:20,
       height:50,
       width: "40%",
     }}
@@ -82,15 +97,16 @@ setAddImage(editCategory.image)
     }}
 />
 {
-
+    
     isLoadingImg?
     <Loader />
     :
-<button onClick={()=>editCategoryData()}>
+<button className={Css.addBtnStl} onClick={()=>editCategoryData()}>
 
     Update Category
 </button>
 }
+    </div>
 {/* {
     uploadCatImg ? 
 <img src={editCategory.image[0].url} style={{widht:300,height:200}} />

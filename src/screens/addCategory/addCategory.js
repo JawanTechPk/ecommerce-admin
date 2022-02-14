@@ -54,10 +54,10 @@ const uploadImg=(img)=>{
             <div className={Css.mainContainer}>
 <div className={Css.addCatDiv}>
 
-<div style={{width:'30%'}}>
-    <label className={Css.labelStl}>Company Name</label>
+<div style={{width:'20%',marginLeft:30,}}>
+    {/* <label className={Css.labelStl}>Category Name</label> */}
     <br />
-<input maxLength={15} type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} className={Css.cateInp}/>
+<input placeholder="Category Name" maxLength={15} type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} className={Css.cateInp}/>
 </div>
 
 {
@@ -68,7 +68,7 @@ isLoadingImg?
   style={{
       border: "1px dotted #006838",
       padding: 8,
-      marginLeft: '3%',
+    //   marginLeft: '3%',
       marginTop:40,
       height:50,
       width: "40%",
