@@ -110,7 +110,10 @@ const Home = () => {
                                 <h4>Add New Category</h4>
                                 <AddCategory />
                                 <div className="container">
-                                    <input placeholder="Search Category" maxLength={15} type="text" value={searchCatText} onChange={(e) => { searchCategories(e) }} className={Css.cateInp} />
+          {
+searchCatArr && searchCatArr.length > 0 ?
+              <input placeholder="Search Category" maxLength={15} type="text" value={searchCatText} onChange={(e) => { searchCategories(e) }} className={Css.cateInp} />
+:null          }
                                     <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
 
                                         {isLoading ?
@@ -159,7 +162,10 @@ const Home = () => {
                                 </form>
                             </div>
                             <div className="container">
+                            {
+searchTagArr && searchTagArr.length > 0 ?
                                 <input placeholder="Search Tag" maxLength={15} type="text" value={searchTagText} onChange={(e) => { searchTag(e) }} className={Css.cateInp} />
+                            :null}
                                 <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: 30 }}>
                                     {
                                         searchTagArr && searchTagArr.length > 0 && searchTagArr.map((val, ind) => {

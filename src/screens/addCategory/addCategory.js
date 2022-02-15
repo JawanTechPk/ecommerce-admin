@@ -13,8 +13,10 @@ const AddCategory = () => {
     const dispatch = useDispatch();
 const [addImage,setAddImage]= useState('');
 const [catText,setCatText]= useState('');
+
 const { user } = useSelector((state) => state.userLoginReducer)
-const { isLoadingImg,uploadCatImg } = useSelector((state) => state.settingReducer)
+const { isLoadingImg,uploadCatImg,categories } = useSelector((state) => state.settingReducer)
+const [catPosi,setCatPosi]= useState(categories.length);
 
 const uploadCategory =()=>{
     console.log('asdasd',catText,'asdasd',uploadCatImg)
@@ -27,10 +29,14 @@ const uploadCategory =()=>{
     }
     else{
         console.log('sadkahsdka')
-        dispatch(uploadCategoryAction(user.userId,catText,uploadCatImg[0].url,0));
+        dispatch(uploadCategoryAction(user.userId,catText,uploadCatImg[0].url,catPosi));
         setCatText('')
     }
 }
+
+useEffect(()=>{
+setCatPosi(categories.length+1)
+},[categories])
 
 const uploadImg=(img)=>{
     console.log(img.size / 1024 ,'img')
@@ -54,11 +60,12 @@ const uploadImg=(img)=>{
             <div className={Css.mainContainer}>
 <div className={Css.addCatDiv}>
 
-<div style={{width:'20%',marginLeft:30,}}>
+<div style={{width:'17%',marginLeft:30,}}>
     {/* <label className={Css.labelStl}>Category Name</label> */}
     <br />
 <input placeholder="Category Name" maxLength={15} type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} className={Css.cateInp}/>
 </div>
+<input placeholder="Category Position" maxLength={15} type="number" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
 
 {
 isLoadingImg?
@@ -84,6 +91,7 @@ isLoadingImg?
     Add Category
 </button>
 </div>
+<p className={Css.notePara}>Note : This category will be put in the last of the list if your given category position already exist </p>
 {
     uploadCatImg ? 
 <img src={uploadCatImg[0].url} style={{widht:200,height:200}} />
