@@ -19,6 +19,19 @@
     border-radius: 10px;
 
 }
+.addBtnStl:hover{
+    background-color: var(--main-color) !important;
+    color:white;
+    height:52px;
+    padding: 10px;
+    width: 20%;
+    font-size: 1.3vw;
+    margin-top: 38px;
+    margin-left: 3%;
+    font-weight: bold;
+    border-radius: 10px;
+
+}
 
 .cateInp{
     width:'100%';

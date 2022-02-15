@@ -33,17 +33,17 @@ const uploadCategory =()=>{
 }
 
 const uploadImg=(img)=>{
-    console.log(img,'img')
+    console.log(img.size / 1024 ,'img')
           let flag = false;
 
-            const size = (img.size / 1024 / 1024).toFixed(2);
+            const size = (img.size / 1024).toFixed(2);
             if (size > 10) {
               flag = true
             } else {
                 dispatch(uploadCategoryImg(img))
             }
           if (flag) {
-            toast.error('image are not allowed bigger then 10mb')
+            toast.error('icon are not allowed bigger then 10kb')
           }
 
 }
@@ -86,7 +86,7 @@ isLoadingImg?
 </div>
 {
     uploadCatImg ? 
-<img src={uploadCatImg[0].url} style={{widht:300,height:200}} />
+<img src={uploadCatImg[0].url} style={{widht:200,height:200}} />
     :null
 }
             </div>

@@ -44,12 +44,12 @@ h4{
 
 
 
-.cateImg{ width: 80px;
-   margin-left:25px;
-   align-self:center;
-   height: 80px;
-   margin-top:30px }
-
+.cateImg{ width: 50%;
+  margin-top: 25%;
+   margin-left:25%;
+   height: 50%;
+   /* margin-top:30px } */
+}
 
    .tagDiv{
      margin-top: 20px;
