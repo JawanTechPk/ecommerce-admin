@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from '../screens/login/login';
 import Home from '../screens/home/home'
 import EditCategory from '../screens/editCategory/editCategory'
-import PrivateRoute from './privateRoute';
+import {PrivateRoute,PublicRoute} from './privateRoute';
 
 const AppRoutes = () => {
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
+                <PublicRoute exact path="/">
                     <Login />
-                </Route>
+                </PublicRoute>
                 <PrivateRoute exact path='/home'>
                     <Home />
                 </PrivateRoute>

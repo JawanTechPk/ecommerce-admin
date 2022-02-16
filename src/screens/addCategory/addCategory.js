@@ -60,25 +60,27 @@ const uploadImg=(img)=>{
             <div className={Css.mainContainer}>
 <div className={Css.addCatDiv}>
 
-<div style={{width:'17%',marginLeft:30,}}>
-    {/* <label className={Css.labelStl}>Category Name</label> */}
+<div className={Css.CateIptDiv}>
     <br />
 <input placeholder="Category Name" maxLength={15} type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} className={Css.cateInp}/>
 </div>
-<input placeholder="Category Position" maxLength={15} type="number" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
+<div className={Css.CateInpPosiDiv}>
+<input placeholder="Category Position" maxLength={5}  onkeydown="return /[1-9]/i.test(event.key)" type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
+</div>
 
 {
 isLoadingImg?
 <Loader />
 :
+<div className={Css.CateInpFileDiv}>
 <input type="file" className="uploadCV"
   style={{
       border: "1px dotted #006838",
       padding: 8,
-    //   marginLeft: '3%',
+      marginLeft: '3%',
       marginTop:40,
       height:50,
-      width: "40%",
+      width:'100%'
     }}
     accept="image/*"
     onChange={(e) => {
@@ -86,6 +88,7 @@ isLoadingImg?
         uploadImg(e.target.files[0])
     }}
 />
+</div>
 }
 <button className={Css.addBtnStl} onClick={()=>uploadCategory()}>
     Add Category

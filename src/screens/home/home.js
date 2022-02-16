@@ -70,7 +70,12 @@ const Home = () => {
         setSearchCatText(e.target.value);
         if (e.target.value.trim().length > 0) {
             const abc = categories.filter((obj) => JSON.stringify(obj).toLowerCase().includes(e.target.value.toLowerCase()));
-            setSearchCatArr(abc)
+           if(abc.length > 0){
+               setSearchCatArr(abc)
+            }
+            else{
+// console.log('no data')                
+            }
         } else {
             setSearchCatArr(categories);
         }
@@ -80,7 +85,12 @@ const Home = () => {
         setSearchTagText(e.target.value);
         if (e.target.value.trim().length > 0) {
             const abc = allTags.filter((obj) => JSON.stringify(obj).toLowerCase().includes(e.target.value.toLowerCase()));
-            setSearchTagArr(abc)
+            if(abc.length > 0){
+                setSearchTagArr(abc)
+             }
+             else{
+ // console.log('no data')                
+             }
         } else {
             setSearchTagArr(allTags)
         }
