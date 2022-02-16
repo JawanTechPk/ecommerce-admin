@@ -25,7 +25,7 @@ h4{
 .cateInp{
     width:300px;
     border-radius:10px;
-    margin-top: 80px;
+    margin-top: 40px;
     height:50px;
     background-color:#f2eded;
     padding-left:10px;
@@ -37,38 +37,64 @@ h4{
 }
 
 .cateDiv{
-   border-radius:10px;
-   margin-top: 20px;
-   margin-left:15px;margin-right:15px;margin-bottom:10px; 
-   height: 180px !important; width: 150px !important;
-   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
 
-
-
-.cateImg{ width: 50%;
-  margin-top: 25%;
-   margin-left:25%;
-   height: 50%;
-   /* margin-top:30px } */
 }
 
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
+
+.iconDelStl{
+  height: 30px;
+  width:20px;
+  margin-right: 5px;
+  color:red;
+  cursor:pointer;
+}
+
+.iconEditStl{
+  height: 17px;
+  width:15px;
+  margin-top: 5px;
+  color:var(--hover-color);
+  cursor:pointer;
+}
+.optMenuStl{
+
+}
    .tagDiv{
-     margin-top: 20px;
-    border-radius:10px;
-    margin-left:15px;margin-right:15px;margin-bottom:10px; height: 110px; width: 150px;
+     display:flex;
+     justify-content: space-between;
+    border-radius:10px;margin-right:15px;margin-bottom:10px; 
+    height: 45px !important; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
    .tagName{
-     margin-top:50px;
-    text-align:center;
+     margin-top:20px;
+  margin-left: 10px;
   font-size: 14px;}
-  .catName{
-    margin-top:35px;
-   text-align:center;
- font-size: 14px;}
-.tagHead{
-  margin-top: 100px;
-  
-}
+
+
 
 .tagInp{
   width:'30%';
@@ -96,8 +122,8 @@ border: none;
   color:white;
   height:52px;
   padding: 10px;
-  width: 20%;
-  font-size: 1.3vw;
+  width: 10%;
+  font-size: 1vw;
   margin-top: 38px;
   margin-left: 3%;
   font-weight: bold;
@@ -110,26 +136,26 @@ border:none
 .dropdown {
     position: relative;
     right:1;
-    top:1;
-
+    top:5px;
     /* display: inline-block; */
   }
   
   .threeDot {
-    position: absolute;
+    /* position: absolute; */
     padding: 5px 5px 5px 10px;
-    right: -5px;
-    top:2px;
+    /* right: -5px; */
+    height: 28px;
+    top:8px;
     color: black;
     /* background-color: var(--main-color); */
     border-bottom-left-radius: 30px;
     font-size: 35px;
   }
   .threeDot:hover {
-    position: absolute;
+    /* position: absolute; */
     padding: 5px 5px 5px 10px;
-    right: 0px;
-    top:0px;
+    /* right: 0px;
+    top:0px; */
     color: white;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 30px;
@@ -138,25 +164,27 @@ border:none
   .dropbtn {
     transition: 0.2s;
   }
+
+  .dropdownContentOne {
+    display: flex;
+    justify-content: space-around;
+  margin-top: 6px;
+   margin-left:10px ;
+    -webkit-transition: max-height 0.2s ease-in;
+    transition: max-height 0.2s ease-in;
+  }
   
   .dropdownContent {
-    /* display: none; */
-    position: absolute;
-    background-color: var(--main-color);
-    margin-top: 40px;
-    min-width: 100px;
-  
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    right: 0;
-    /* for Adding transtion on hover */
-    max-height: 0;
-    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+  margin-top: 14px;
+   margin-left:10px ;
     -webkit-transition: max-height 0.2s ease-in;
     transition: max-height 0.2s ease-in;
   }
   
   .dropdownContent a {
+    display: flex;
     /* color: black; */
     padding: 8px 16px;
     text-decoration: none;
@@ -171,7 +199,7 @@ border:none
   }
   
   .dropdown:hover .dropdownContent {
-    display: block;
+    display: flex;
     /* for Adding transtion on hover */
     max-height: 500px;
     -webkit-transition: max-height 0.2s ease-in;
@@ -179,14 +207,15 @@ border:none
   }
   
   .dropdown:hover .dropbtn {
-    background-color: var(--hover-color);
+    /* background-color: var(--hover-color); */
     border-bottom-left-radius: 25px;
+    color:black
   }
   
   
   .tabbed {
     overflow-x: hidden; /* so we could easily hide the radio inputs */
-    margin: 32px 0;
+    margin: 20px 0;
     padding-bottom: 16px;
     /* border-bottom: 1px solid #ccc; */
   }
@@ -383,42 +412,42 @@ border:none
 
 
   @media screen and (max-width: 1000px) {
-    .cateDiv{
-      border-radius:10px;
-      margin-top: 20px;
-      margin-left:1%;margin-right:1%;margin-bottom:10px; 
-      height: 180px !important; width:30% !important;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-      .cateImg{ width: 50% !important;
-        margin-left:25%;
-        align-self:center;
-        height: 50% !important;
-        margin-top:30px }
-     
-     
-    .tagDiv{
-      border-radius:10px;
-      margin:5px; height: 100px; width: 30%;
-      margin-left: 2%;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-      .tagName{
-        margin-top:45px;
-       text-align:center;
-     font-size: 14px;}
-     .catName{
-      margin-top:30px;
-     text-align:center;
-   font-size: 14px;}
+   
+.cateDiv{
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
 
+}
 
-/* DROPDOWN */
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
 
+/* DropDown */
 
 .dropdown {
   position: relative;
   right:1;
-  top:1;
-
+  top:5px;
   /* display: inline-block; */
 }
 
@@ -426,50 +455,70 @@ border:none
   position: absolute;
   padding: 5px 5px 5px 10px;
   right: -5px;
-  top:2px;
+  height: 28px;
+  top:8px;
   color: black;
   /* background-color: var(--main-color); */
   border-bottom-left-radius: 30px;
-  font-size: 32px;
+  font-size: 35px;
 }
 .threeDot:hover {
   position: absolute;
   padding: 5px 5px 5px 10px;
-  right: 0px;
-  top:0px;
+  /* right: 0px;
+  top:0px; */
   color: white;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 30px;
-  font-size: 32px;
+  font-size: 35px;
 }
 .dropbtn {
   transition: 0.2s;
 }
 
+.iconDelStl{
+  height: 30px;
+  width:20px;
+  color:red;
+  cursor:pointer;
+}
+
+.iconEditStl{
+  height: 17px;
+  width:15px;
+  margin-top: 6px;
+  color:var(--hover-color);
+  cursor:pointer;
+}
+
+.tagDiv{
+  display:flex;
+  justify-content: space-between;
+ border-radius:10px;margin-right:15px;margin-bottom:10px; 
+ height: 45px !important; 
+ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+.tagName{
+  margin-top:20px;
+margin-left: 10px;
+font-size: 14px;}
+
 .dropdownContent {
-  /* display: none; */
-  position: absolute;
-  background-color: var(--main-color);
-  margin-top: 30px;
-  min-width: 50px;
-  height: 70px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  right: 0;
-  /* for Adding transtion on hover */
-  max-height: 0;
-  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+margin-top: 14px;
+ margin-left:10px ;
   -webkit-transition: max-height 0.2s ease-in;
   transition: max-height 0.2s ease-in;
 }
 
 .dropdownContent a {
+  display: flex;
   /* color: black; */
-  padding: 10px 10px;
-  font-size: 10px;
+  padding: 8px 16px;
   text-decoration: none;
   display: block;
   color: white !important;
+  font-size: 12px;
 }
 
 .dropdownContent a:hover {
@@ -478,126 +527,73 @@ border:none
 }
 
 .dropdown:hover .dropdownContent {
-  display: block;
+  display: flex;
   /* for Adding transtion on hover */
-  max-height: 300px;
+  max-height: 500px;
   -webkit-transition: max-height 0.2s ease-in;
   transition: max-height 0.2s ease-in;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: var(--hover-color);
+  /* background-color: var(--hover-color); */
   border-bottom-left-radius: 25px;
+  color:black
 }
+
+
   }
 
 
   @media screen and (max-width: 860px) {
-    .cateDiv{
-      border-radius:10px;
-      margin-top: 20px;
-      margin-left:1%;margin-right:1%;margin-bottom:10px;
-       height: 160px !important; width:40% !important;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-      .cateImg{ width: 50% !important;
-        margin-left:5%;
-        align-self:center;
-        height: 50% !important;
-        margin-top:30px }
-     
+   
+.cateDiv{
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
+
+}
+
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
      
     .tagDiv{
-      border-radius:10px;
-      margin:10px; height: 100px; width: 40%;
-      margin-left: 5%;
-      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-      .tagName{
-        margin-top:45px;
-       text-align:center;
-     font-size: 14px;}
-     .catName{
-      margin-top:30px;
-     text-align:center;
-   font-size: 14px;}
-
-/* DROPDOWN */
-
-
-.dropdown {
-  position: relative;
-  right:1;
-  top:1;
-
-  /* display: inline-block; */
-}
-
-.threeDot {
-  position: absolute;
-  padding: 5px 5px 5px 10px;
-  right: -5px;
-  top:2px;
-  color: black;
-  /* background-color: var(--main-color); */
-  border-bottom-left-radius: 30px;
-  font-size: 32px;
-}
-.threeDot:hover {
-  position: absolute;
-  padding: 5px 5px 5px 10px;
-  right: 0px;
-  top:0px;
-  color: white;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 30px;
-  font-size: 32px;
-}
-.dropbtn {
-  transition: 0.2s;
-}
-
-.dropdownContent {
-  /* display: none; */
-  position: absolute;
-  background-color: var(--main-color);
-  margin-top: 30px;
-  min-width: 50px;
-  height: 70px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  right: 0;
-  /* for Adding transtion on hover */
-  max-height: 0;
-  overflow: hidden;
-  -webkit-transition: max-height 0.2s ease-in;
-  transition: max-height 0.2s ease-in;
-}
-
-.dropdownContent a {
-  /* color: black; */
-  padding: 10px 10px;
-  font-size: 10px;
-  text-decoration: none;
-  display: block;
-  color: white !important;
-}
-
-.dropdownContent a:hover {
-  background-color: var(--hover-color);
-  color: white;
-}
-
-.dropdown:hover .dropdownContent {
-  display: block;
-  /* for Adding transtion on hover */
-  max-height: 300px;
-  -webkit-transition: max-height 0.2s ease-in;
-  transition: max-height 0.2s ease-in;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: var(--hover-color);
-  border-bottom-left-radius: 25px;
-}
+      display:flex;
+      justify-content: space-between;
+     border-radius:10px;margin-right:15px;margin-bottom:10px; 
+     height: 45px !important; 
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+    .tagName{
+      margin-top:20px;
+    margin-left: 10px;
+    font-size: 14px;}
+    
+    .dropdownContent {
+      display: flex;
+      justify-content: space-around;
+    margin-top: 14px;
+     margin-left:10px ;
+      -webkit-transition: max-height 0.2s ease-in;
+      transition: max-height 0.2s ease-in;
+    }
 
 .addBtnStl{
   background-color: var(--main-color) !important;
@@ -614,14 +610,141 @@ border:none
 }
 
 
+/* DropDown */
+
+.dropdown {
+  position: relative;
+  right:1;
+  top:5px;
+  /* display: inline-block; */
+}
+
+.threeDot {
+  position: absolute;
+  padding: 5px 5px 5px 10px;
+  right: -5px;
+  height: 28px;
+  top:8px;
+  color: black;
+  /* background-color: var(--main-color); */
+  border-bottom-left-radius: 30px;
+  font-size: 35px;
+}
+.threeDot:hover {
+  position: absolute;
+  padding: 5px 5px 5px 10px;
+  /* right: 0px;
+  top:0px; */
+  color: white;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 30px;
+  font-size: 35px;
+}
+.dropbtn {
+  transition: 0.2s;
+}
+
+.iconDelStl{
+  height: 30px;
+  width:20px;
+  color:red;
+  cursor:pointer;
+}
+
+.iconEditStl{
+  height: 17px;
+  width:15px;
+  margin-top: 6px;
+  color:var(--hover-color);
+  cursor:pointer;
+}
+
+
+
+.dropdownContent a {
+  display: flex;
+  /* color: black; */
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  color: white !important;
+  font-size: 12px;
+}
+
+.dropdownContent a:hover {
+  background-color: var(--hover-color);
+  color: white;
+}
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+  /* for Adding transtion on hover */
+  max-height: 500px;
+  -webkit-transition: max-height 0.2s ease-in;
+  transition: max-height 0.2s ease-in;
+}
+
+.dropdown:hover .dropbtn {
+  /* background-color: var(--hover-color); */
+  border-bottom-left-radius: 25px;
+  color:black
+}
 
   }
 
   @media screen and (max-width: 500px) {
+
+.cateDiv{
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
+
+}
+
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
     .tagName{
       margin-top:30px;
      text-align:center;
    font-size: 12px !important;}
+   .tagDiv{
+    display:flex;
+    justify-content: space-between;
+   border-radius:10px;margin-right:15px;margin-bottom:10px; 
+   height: 45px !important; 
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+  .tagName{
+    margin-top:20px;
+  margin-left: 10px;
+  font-size: 14px;}
+  
+  .dropdownContent {
+    display: flex;
+    justify-content: space-around;
+  margin-top: 14px;
+   margin-left:10px ;
+    -webkit-transition: max-height 0.2s ease-in;
+    transition: max-height 0.2s ease-in;
+  }
   }
 
 
@@ -641,28 +764,54 @@ border:none
         border:none
         }
 
-        .cateDiv{
-          border-radius:10px !important;
-          margin-top: 20px !important;
-          margin-left:1%;margin-right:1%;margin-bottom:10px;
-           height: 130px !important; width:40% !important;
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-          .cateImg{ width: 50% !important;
-            margin-left:2%;
-            align-self:center;
-            height: 50% !important;
-            margin-top:30px }
-         
-         
+       
+.cateDiv{
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
+
+}
+
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
         .tagDiv{
-          border-radius:10px;
-          margin:10px; height: 80px; width: 40%;
-          margin-left: 5%;
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-          .tagName{
-            margin-top:30px;
-           text-align:center;
-         font-size: 10px !important;}
+          display:flex;
+          justify-content: space-between;
+         border-radius:10px;margin-right:15px;margin-bottom:10px; 
+         height: 45px !important; 
+         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+        .tagName{
+          margin-top:20px;
+        margin-left: 10px;
+        font-size: 14px;}
+        
+        .dropdownContent {
+          display: flex;
+          justify-content: space-around;
+        margin-top: 14px;
+         margin-left:10px ;
+          -webkit-transition: max-height 0.2s ease-in;
+          transition: max-height 0.2s ease-in;
+        }
          .catName{
           margin-top:15px;
          text-align:center;
@@ -670,95 +819,114 @@ border:none
     
     /* DROPDOWN */
     
-    
-    .dropdown {
-      position: relative;
-      right:1;
-      top:1;
-    
-      /* display: inline-block; */
-    }
-    
-    .threeDot {
-      position: absolute;
-      padding: 5px 5px 5px 10px;
-      right: -5px;
-      top:2px;
-      color: black;
-      /* background-color: var(--main-color); */
-      border-bottom-left-radius: 30px;
-      font-size: 30px;
-    }
-    .threeDot:hover {
-      position: absolute;
-      padding: 5px 5px 5px 10px;
-      right: 0px;
-      top:0px;
-      color: white;
-      border-top-right-radius: 10px;
-      border-bottom-left-radius: 30px;
-      font-size: 30px;
-    }
-    .dropbtn {
-      transition: 0.2s;
-    }
-    
-    .dropdownContent {
-      /* display: none; */
-      position: absolute;
-      background-color: var(--main-color);
-      margin-top: 30px;
-      min-width: 50px;
-      height: 50px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      right: 0;
-      /* for Adding transtion on hover */
-      max-height: 0;
-      overflow: hidden;
-      -webkit-transition: max-height 0.2s ease-in;
-      transition: max-height 0.2s ease-in;
-    }
-    
-    .dropdownContent a {
-      /* color: black; */
-      padding: 4px 10px;
-      font-size: 10px;
-      text-decoration: none;
-      display: block;
-      color: white !important;
-    }
-    
-    .dropdownContent a:hover {
-      background-color: var(--hover-color);
-      color: white;
-    }
-    
-    .dropdown:hover .dropdownContent {
-      display: block;
-      /* for Adding transtion on hover */
-      max-height: 300px;
-      -webkit-transition: max-height 0.2s ease-in;
-      transition: max-height 0.2s ease-in;
-    }
-    
-    .dropdown:hover .dropbtn {
-      background-color: var(--hover-color);
-      border-bottom-left-radius: 25px;
-    }
+/* DropDown */
+
+.dropdown {
+  position: relative;
+  right:1;
+  top:5px;
+  /* display: inline-block; */
+}
+
+.threeDot {
+  position: absolute;
+  padding: 5px 5px 5px 10px;
+  right: -5px;
+  height: 28px;
+  top:8px;
+  color: black;
+  /* background-color: var(--main-color); */
+  border-bottom-left-radius: 30px;
+  font-size: 35px;
+}
+.threeDot:hover {
+  position: absolute;
+  padding: 5px 5px 5px 10px;
+  /* right: 0px;
+  top:0px; */
+  color: white;
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 30px;
+  font-size: 35px;
+}
+.dropbtn {
+  transition: 0.2s;
+}
+
+.iconDelStl{
+  height: 30px;
+  width:20px;
+  color:red;
+  cursor:pointer;
+}
+
+.iconEditStl{
+  height: 17px;
+  width:15px;
+  margin-top: 6px;
+  color:var(--hover-color);
+  cursor:pointer;
+}
+
+.dropdownContent a {
+  display: flex;
+  /* color: black; */
+  padding: 8px 16px;
+  text-decoration: none;
+  display: block;
+  color: white !important;
+  font-size: 12px;
+}
+
+.dropdownContent a:hover {
+  background-color: var(--hover-color);
+  color: white;
+}
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+  /* for Adding transtion on hover */
+  max-height: 500px;
+  -webkit-transition: max-height 0.2s ease-in;
+  transition: max-height 0.2s ease-in;
+}
+
+.dropdown:hover .dropbtn {
+  /* background-color: var(--hover-color); */
+  border-bottom-left-radius: 25px;
+  color:black
+}
       }
       @media screen and (max-width: 250px) {
-        .cateDiv{
-            border-radius:10px;
-            margin-top: 20px;
-            margin-left:15px;margin-right:15px;margin-bottom:10px; 
-            height: 120px !important; width:30% !important;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
-            .cateImg{ width: 50px;
-              margin-left:10%;
-              align-self:center;
-              height: 80px;
-              margin-top:30px }
+        
+.cateDiv{
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius:10px;
+   height: 45px !important; 
+   align-items: center;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+   .imgDiv{
+display: flex;
+align-items: center;
+
+}
+
+.cateImg{ 
+   width: 25px;
+   margin-left:5%;
+   height: 25px;
+   object-fit: contain;
+}
+.catName{
+ margin-left: 5px;
+font-size: 12px;
+margin-top: 20px;
+margin-right: 10px;
+white-space: nowrap;
+}
            
               .tagName{
                 margin-top:30px;

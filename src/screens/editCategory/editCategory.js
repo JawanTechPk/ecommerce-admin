@@ -68,13 +68,13 @@ setCatPosi(editCategory.position)
             <div className={Css.mainContainer}>
 <div className={Css.addCatDiv}>
 
-<input  type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} style={{ width:'20%',
+<input  type="text" value={catText} maxLength={15} onChange={(e)=>setCatText(e.target.value)} style={{ width:'20%',
     borderRadius:10,
     height:50,
     paddingLeft:10,
     backgroundColor:'#f2eded',
     border: 'none'}}/>
-<input  type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} style={{ width:'20%',
+<input  type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} style={{ width:'10%',
     borderRadius:10,
     height:50,
     paddingLeft:10,
@@ -88,7 +88,7 @@ setCatPosi(editCategory.position)
       padding: 8,
       marginLeft:20,
       height:50,
-      width: "40%",
+      width: "25%",
     }}
     accept="image/*"
     onChange={(e) => {
@@ -111,7 +111,7 @@ setCatPosi(editCategory.position)
     uploadCatImg ? 
 <img src={editCategory.image[0].url} style={{widht:300,height:200}} />
     : */}
-    <img src={editCategory.image} style={{widht:300,height:200}} />
+    <img src={editCategory.image} style={{widht:100,height:100}} />
 {/* } */}
             </div>
             </div>

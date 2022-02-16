@@ -6,10 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from '../../store/actions/userAction/UserAuthAction';
 import { saveEditCatToRedux, updTagAction, addTagAction, getAllTags, getAllCategory, deleteTagAction, deleteCategoryAction } from '../../store/actions/settingAction/settingAction';
 import { BsPersonCircle, BsThreeDotsVertical } from "react-icons/bs";
+import { FiEdit} from 'react-icons/fi'
+import { MdDeleteOutline} from 'react-icons/md'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Loader from '../../UIcomponents/loader/loader';
 import AddCategory from '../addCategory/addCategory';
-
+import { ToastContainer,toast } from "react-toastify";
 const Home = () => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -46,7 +48,8 @@ const Home = () => {
         setTagName("");
     }
 
-    const updateTag = () => {
+    const updateTag = (e) => {
+        e.preventDefault();
         dispatch(updTagAction(user.userId, tagName, tagUpdData));
         setTagName("");
         setTagNameUpd(false)
@@ -67,10 +70,11 @@ const Home = () => {
 
 
     const searchCategories = (e) => {
+        console.log(e.target.value,'e.target.value')
         setSearchCatText(e.target.value);
         if (e.target.value.trim().length > 0) {
             const abc = categories.filter((obj) => JSON.stringify(obj).toLowerCase().includes(e.target.value.toLowerCase()));
-           if(abc.length > 0){
+            if(abc.length > 0){
                setSearchCatArr(abc)
             }
             else{
@@ -101,7 +105,7 @@ const Home = () => {
         <div >
             <Navbar />
             <div className="container">
-
+<ToastContainer />
                 <div className={`${Css.tabbed}`}>
                     <input type="radio" id="tab21" name="css-tabs2" onClick={() => setCatetag(true)} defaultChecked />
                     <input type="radio" id="tab22" name="css-tabs2" onClick={() => setCatetag(false)} />
@@ -115,7 +119,7 @@ const Home = () => {
                 {
                     cateTags ?
                         <>
-                            <div style={{ marginTop: 90 }}>
+                            <div >
                                 <h3>Categories </h3>
                                 <h4>Add New Category</h4>
                                 <AddCategory />
@@ -130,20 +134,18 @@ searchCatArr && searchCatArr.length > 0 ?
                                             <Loader />
                                             :
                                             searchCatArr && searchCatArr.length > 0 && searchCatArr.map((val, ind) => {
-                                                return (<div className={Css.cateDiv} key={ind}>
-                                                    <div className={Css.dropdown} >
-                                                        <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
-                                                        <div className={Css.dropdownContent}>
-                                                            <a onClick={() => toEditCategory(val, ind)}>Edit</a>
-                                                            <a onClick={() => { deleteCategory(val._id, ind) }} >Delete</a>
-                                                        </div>
+                                  return (
+                                      <div className={Css.cateDiv}>
+                                        <div className={Css.imgDiv}>
+<img src={val.image} className={Css.cateImg}/>
+<p className={Css.catName}>{val.category_name}</p>
+                                        </div>    
+                                                        <div className={Css.dropdownContentOne}> 
+                                                            <FiEdit onClick={() => toEditCategory(val, ind)} className={Css.iconEditStl}/>
+                                                            <MdDeleteOutline onClick={() => { deleteCategory(val._id, ind) }} className={Css.iconDelStl}/>
                                                     </div>
-                                                    <div style={{ padding: 10 }}>
-                                                        <img src={val.image} className={Css.cateImg} />
-                                                        <h6 className={Css.catName}>{val.category_name.split(" ").join("\n")}</h6>
-                                                    </div>
-                                                </div>
-                                                )
+                                         </div>
+                                  )
 
                                             })
                                         }
@@ -159,15 +161,15 @@ searchCatArr && searchCatArr.length > 0 ?
                         <div >
                             <h3 className={Css.tagHead}>Tags</h3>
                             <h4>Add New Tag</h4>
-                            <div style={{ display: 'fex', }}>
-                                <form style={{ display: 'inline' }} onSubmit={addTag}>
+                            <div style={{  }}>
+                                <form style={{ display: 'inline' }} onSubmit={(e)=>tagNameUpd ? updateTag(e) : addTag(e)}>
                                     <input placeholder="Tag Name" type="text" maxLength={15} value={tagName} onChange={(e) => setTagName(e.target.value)} className={Css.tagInp} required />
                                     {isLoadingTag ?
 
                                         <Loader />
 
                                         :
-                                        <input type="submit" value="Add Tag" className={Css.addBtnStl} />
+                                        <input type="submit" value={tagNameUpd ? "Update Tag" :"Add Tag"} className={Css.addBtnStl} />
                                     }
                                 </form>
                             </div>
@@ -180,16 +182,12 @@ searchTagArr && searchTagArr.length > 0 ?
                                     {
                                         searchTagArr && searchTagArr.length > 0 && searchTagArr.map((val, ind) => {
                                             return <div className={Css.tagDiv} key={ind}>
-                                                <div className={Css.dropdown}>
-                                                    <BsThreeDotsVertical className={`${Css.threeDot} ${Css.dropbtn}`} />
+                                            <h6 className={Css.tagName}>{val.name}</h6>
                                                     <div className={Css.dropdownContent}>
-                                                        <a data-bs-toggle="modal"
-                                                            data-bs-target="#staticBackdrop" onClick={() => { setTagNameUpd(true); setTagName(val.name); setTagUpdData({ ...val, ind }) }}>Edit</a>
-                                                        <a onClick={() => { deleteTag(val.id, ind) }}>Delete</a>
+                                                        <FiEdit  type="button" data-toggle="modal" data-target="#exampleModal" onClick={() => { setTagNameUpd(true); setTagName(val.name); setTagUpdData({ ...val, ind }) }} className={Css.iconEditStl} />
+                                                        <MdDeleteOutline onClick={() => { deleteTag(val.id, ind) }} className={Css.iconDelStl}/>
                                                     </div>
-                                                </div>
-                                                <h6 className={Css.tagName}>{val.name}</h6>
-                                            </div>
+                                        </div>
                                         })
                                     }
                                 </div>
@@ -197,11 +195,7 @@ searchTagArr && searchTagArr.length > 0 ?
 
                         </div>
                 }
-
-
-
-
-                <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                 <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex={-1} aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered">
                         <div className="modal-content borderradius-remove">
                             <div className="modal-header d-flex justify-content-center">
@@ -226,9 +220,14 @@ searchTagArr && searchTagArr.length > 0 ?
                     </div>
                 </div>
             </div>
+  
+      
         </div>
 
     )
 }
+
+
+
 
 export default Home;

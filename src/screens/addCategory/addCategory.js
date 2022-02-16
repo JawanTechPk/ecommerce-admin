@@ -65,7 +65,9 @@ const uploadImg=(img)=>{
 <input placeholder="Category Name" maxLength={15} type="text" value={catText} onChange={(e)=>setCatText(e.target.value)} className={Css.cateInp}/>
 </div>
 <div className={Css.CateInpPosiDiv}>
-<input placeholder="Category Position" maxLength={5}  onkeydown="return /[1-9]/i.test(event.key)" type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
+<input placeholder="Position"
+    type = "text"
+    maxlength ="5"  value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
 </div>
 
 {
@@ -80,7 +82,7 @@ isLoadingImg?
       marginLeft: '3%',
       marginTop:40,
       height:50,
-      width:'100%'
+      width:'70%'
     }}
     accept="image/*"
     onChange={(e) => {
@@ -97,7 +99,7 @@ isLoadingImg?
 <p className={Css.notePara}>Note : This category will be put in the last of the list if your given category position already exist </p>
 {
     uploadCatImg ? 
-<img src={uploadCatImg[0].url} style={{widht:200,height:200}} />
+<img src={uploadCatImg[0].url} style={{widht:100,height:100,marginLeft:20}} />
     :null
 }
             </div>
