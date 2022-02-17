@@ -60,7 +60,6 @@ const getAllCategory = () => {
               type: ActionType.CATEGORY_DELETED_FAIL,
             })
           } else {
-            toast.success(success.data.message)
               dispatch({
                 type: ActionType.CATEGORY_DELETED_SUCCESS,
                 payload: index

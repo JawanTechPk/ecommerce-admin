@@ -31,14 +31,6 @@
 }
 .addBtnStl:hover{
     background-color: var(--main-color) !important;
-    color:white;
-    height:52px;
-    padding: 10px;
-    width: 12%;
-    font-size: 1vw;
-    margin-top: 38px;
-    font-weight: bold;
-    border-radius: 10px;
 }
 
 .cateInp{
