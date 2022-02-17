@@ -68,27 +68,31 @@ setCatPosi(editCategory.position)
             <div className={Css.mainContainer}>
 <div className={Css.addCatDiv}>
 
-<input  type="text" value={catText} maxLength={15} onChange={(e)=>setCatText(e.target.value)} style={{ width:'20%',
+<div className={Css.CateIptDiv}>
+<input  type="text" value={catText} maxLength={15} onChange={(e)=>setCatText(e.target.value)} style={{ width:'100%',
     borderRadius:10,
     height:50,
     paddingLeft:10,
     backgroundColor:'#f2eded',
     border: 'none'}}/>
-<input  type="text" value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} style={{ width:'10%',
+    </div>
+    <div className={Css.CateInpPosiDiv}>
+<input  type="text" maxLength={5} value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} style={{ width:'100%',
     borderRadius:10,
     height:50,
     paddingLeft:10,
     marginLeft:10,
     backgroundColor:'#f2eded',
     border: 'none'}}/>
-
+</div>
+<div className={Css.CateInpFileDiv}>
 <input type="file" className="uploadCV"
   style={{
       border: "1px dotted #006838",
       padding: 8,
       marginLeft:20,
       height:50,
-      width: "25%",
+      width:'70%'
     }}
     accept="image/*"
     onChange={(e) => {
@@ -96,6 +100,8 @@ setCatPosi(editCategory.position)
         editImg(e.target.files[0])
     }}
 />
+
+</div>
 {
     
     isLoadingImg?
@@ -107,12 +113,9 @@ setCatPosi(editCategory.position)
 </button>
 }
     </div>
-{/* {
-    uploadCatImg ? 
-<img src={editCategory.image[0].url} style={{widht:300,height:200}} />
-    : */}
-    <img src={editCategory.image} style={{widht:100,height:100}} />
-{/* } */}
+
+    <img src={editCategory.image} style={{widht:100,height:100,marginTop:10}} />
+
             </div>
             </div>
             </div>

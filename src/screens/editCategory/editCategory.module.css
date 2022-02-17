@@ -1,7 +1,9 @@
 .addCatDiv{
     display:flex; margin-top: 38px;
 }
-
+.CateInpPosiDiv{width:10%;}
+.CateIptDiv{width:15%;};
+.CateInpFileDiv{width:10% !important;}
 .addBtnStl{
     background-color: var(--main-color) !important;
     color:white;
@@ -9,10 +11,10 @@
     padding: 10px;
     width: 12%;
     font-size: 1vw;
-    /* margin-top: 38px; */
-    margin-left: 3%;
+    margin-top: 0px;
     font-weight: bold;
     border-radius: 10px;
+    margin-left: -80px;
 
 }
 .addBtnStl:hover{
@@ -22,21 +24,111 @@
     padding: 10px;
     width: 12%;
     font-size: 1vw;
-    /* margin-top: 38px; */
-    margin-left: 3%;
+    margin-top: 0px;
     font-weight: bold;
     border-radius: 10px;
-
 }
-@media screen and (max-width: 380px) {
+
+    
+    
+@media screen and (max-width: 700px) {
     .addCatDiv{
-        display:block
+        display:block;
+        margin-left: 0px;
     }
+    .cateInp{
+        width:100% !important;
+        border-radius:10px;
+        margin-top: 15px;
+        height:50px;
+        background-color:#f2eded;
+        padding-left:10px;
+        border: none;
+        margin-left: -20px;
+        font-size: 14px;
+    }
+    .cateInp:focus{
+        border: none;
+    }
+    .addBtnStl{
+        background-color: var(--main-color) !important;
+        color:white;
+        height:52px;
+        padding: 10px;
+        width: 35%;
+        font-size: 10px;
+        margin-top: 0px;
+        margin-left: 3%;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-left:20px;margin-top: 10px;
+    }
+    .addBtnStl:hover{
+        background-color: var(--main-color) !important;
+        color:white;
+        height:52px;
+        padding: 10px;
+        width: 35%;
+        font-size: 10px;
+        margin-top: 0px;
+        font-weight: bold;
+        border-radius: 10px;
+        margin-left:20px
     }
     
-    
-    @media screen and (max-width: 860px) {
-        .addCatDiv{
-            display:block
-        }
-        }
+
+    .CateIptDiv{width:35%;margin-left:20px;margin-bottom: 10px;}
+    .CateInpPosiDiv{width:35%;margin-left:10px}
+    .CateInpFileDiv{width:50%;margin-top: 10px;}
+    }
+
+        @media screen and (max-width: 380px) {
+            .addCatDiv{
+                display:block
+            }
+        
+            .cateInp{
+                width:100% !important;
+                border-radius:10px;
+                margin-top: 15px;
+                height:50px;
+                background-color:#f2eded;
+                padding-left:10px;
+                border: none;
+                margin-left: -20px;
+                font-size: 14px;
+            }
+            .cateInp:focus{
+                border: none;
+            }
+            .addBtnStl{
+                background-color: var(--main-color) !important;
+                color:white;
+                height:52px;
+                padding: 10px;
+                width: 35%;
+                font-size: 10px;
+                margin-top: 0px;
+                margin-left: 3%;
+                font-weight: bold;
+                border-radius: 10px;
+                margin-left:20px;margin-top: 10px;
+            }
+            .addBtnStl:hover{
+                background-color: var(--main-color) !important;
+                color:white;
+                height:52px;
+                padding: 10px;
+                width: 35%;
+                font-size: 10px;
+                margin-top: 0px;
+                font-weight: bold;
+                border-radius: 10px;
+                margin-left:20px
+            }
+            
+        
+            .CateIptDiv{width:35%;margin-left:20px;margin-bottom: 10px;}
+            .CateInpPosiDiv{width:35%;margin-left:10px}
+            .CateInpFileDiv{width:50%;margin-top: 10px;}
+            }

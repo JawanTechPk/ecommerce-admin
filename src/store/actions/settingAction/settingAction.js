@@ -242,7 +242,7 @@ axios.post(`${baseUrl}category/${_id}`,obj)
         dispatch({
           type: ActionType.UPDATE_CATEGORY_DATA_SUCCESS,
         })
-        dispatch(getAllTags())
+        dispatch(getAllCategory())
     }
   })
   .catch((err) => {
@@ -274,7 +274,7 @@ const uploadCategoryImg =(img,cond,editCategory,admin_ref)=>{
         if (success.data.code) {
           toast.error(success.data.reason || success.data.message)
           dispatch({
-            type: ActionType.UPLOAD_CATEGORY_FAIL,
+            type: ActionType.IMAGES_UPLOADED_FAILED,
           })
         } else {
           if(cond == "updateImgCat"){

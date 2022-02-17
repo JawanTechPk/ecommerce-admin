@@ -72,7 +72,12 @@ const uploadImg=(img)=>{
 
 {
 isLoadingImg?
+<div style={{     height:50,
+      width:'30%',padding: 8,
+      marginLeft: '3%',
+      marginTop:10,}}>
 <Loader />
+</div>
 :
 <div className={Css.CateInpFileDiv}>
 <input type="file" className="uploadCV"

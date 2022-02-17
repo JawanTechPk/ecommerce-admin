@@ -122,7 +122,7 @@ const settingReducer = (state = INITIAL_STATE, action) => {
                                 isLoadingImg: false,
                                 uploadCatImg:action.payload
                             }
-                        case ActionType.UPLOAD_CATEGORY_FAIL:
+                        case ActionType.IMAGES_UPLOADED_FAILED:
                             return {
                                 ...state,
                                 isLoadingImg: false
@@ -159,17 +159,18 @@ const settingReducer = (state = INITIAL_STATE, action) => {
                                     case ActionType.UPDATE_CATEGORY_DATA_START:
                                         return {
                                             ...state,
-                                            isLoadingImg: true
+                                            isLoadingImg: true,
                                         }
                                         case ActionType.UPDATE_CATEGORY_DATA_SUCCESS:
                                             return {
                                                 ...state,
-                                                isLoadingImg: false
+                                                isLoadingImg: false,
                                             }
                                             case ActionType.UPDATE_CATEGORY_DATA_FAIL:
                                                 return {
                                                     ...state,
-                                                    isLoadingImg: false
+                                                    isLoadingImg: false,
+                                                  
                                                 }
         default:
             return state;
