@@ -2,6 +2,28 @@
 .mainContainer{
     margin-top: -30px;
 }
+.fileSpan {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  
+  .fileSpan label {
+    padding: 10px;
+    font-size: 14px;
+    background: var(--main-color);
+    display: table;
+    color: #fff;
+    padding: 14px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .fileSpan input[type="file"] {
+    display: none;
+  }
 .labelStl{
     margin-top: 20px;
     font-size: 14px;
@@ -26,7 +48,7 @@
     margin-top: 38px;
     font-weight: bold;
     border-radius: 10px;
-    margin-left: -80px;
+    margin-left: 10px;
    
 }
 .addBtnStl:hover{
@@ -72,6 +94,27 @@
 
 
 @media screen and (max-width: 860px) {
+    .fileSpan {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 40px;
+      }
+      
+      .fileSpan label {
+        padding: 10px;
+        background: var(--main-color);
+        display: table;
+        color: #fff;
+        padding: 14px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-bottom: -5px;
+      }
+      
+      .fileSpan input[type="file"] {
+        display: none;
+      }
     .addCatDiv{
         display:block;
         margin-left: 0px;
@@ -105,9 +148,9 @@
 
     }
 
-    .CateIptDiv{width:30%;margin-left:30px}
-    .CateInpPosiDiv{width:30%;margin-left:10px}
-    .CateInpFileDiv{width:45%}
+    .CateIptDiv{width:50%;margin-left:30px}
+    .CateInpPosiDiv{width:50%;margin-left:10px}
+    .CateInpFileDiv{width:65%}
     }
     @media screen and (max-width: 450px) {
         .addCatDiv{

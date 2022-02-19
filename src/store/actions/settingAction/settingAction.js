@@ -300,8 +300,143 @@ const uploadCategoryImg =(img,cond,editCategory,admin_ref)=>{
 
 
 
+const getAllUsersAction =()=>{
+  return (dispatch) => {
+      dispatch({
+        type: ActionType.FETCHING_ALL_USERS,
+      })
+      axios.get(`${baseUrl}getalluser`)
+        .then((success) => {
+          if (success.data.code) {
+            toast.error(success.data.reason || success.data.message)
+            dispatch({
+              type: ActionType.FETCHED_ALL_USERS_FAIL,
+            })
+          } else {
+              dispatch({
+                type: ActionType.FETCHED_ALL_USERS_SUCCESS,
+                payload: success,
+              })
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: ActionType.FETCHED_ALL_USERS_FAIL,
+          })
+        })
+    }
+}
+
+const deleteUserAction =(id,index)=>{
+return (dispatch) => {
+    dispatch({
+      type: ActionType.DELETING_USER,
+    })
+    let obj = { data: { userId: id } }
+    axios.delete(`${baseUrl}deleteuser`,obj)
+      .then((success) => {
+        if (success.data.code) {
+          toast.error(success.data.reason || success.data.message)
+          dispatch({
+            type: ActionType.DELETED_USER_FAIL,
+          })
+        } else {
+            dispatch({
+              type: ActionType.DELETED_USER_SUCCESS,
+              payload: index
+            })
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: ActionType.DELETED_USER_FAIL,
+        })
+      })
+  }
+}
+
+const getAllProduct = () => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.FETCHING_ALL_PRODUCTS,
+    });
+    axios
+      .get(`${baseUrl}product?product=0`)
+      .then((success) => {
+        dispatch({
+          type: ActionType.FETCHED_ALL_PRODUCTS_SUCCESS,
+          payload: success,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: ActionType.FETCHED_ALL_PRODUCTS_FAILED,
+        });
+      });
+  };
+};
 
 
+const getAllProducts = (val) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.FETCHING_PAGINATION_PRODUCTS,
+    });
+    axios
+      .get(`${baseUrl}product?product=${val + 50}`)
+      .then((success) => {
+        console.log(success.data.length);
+        if (success.data.length === 0) {
+          dispatch({
+            type: ActionType.NODATA_FETCHING_PAGINATION_PRODUCTS,
+            payload: success.data.length,
+          });
+        } else if (success.data.length > 0) {
+          dispatch({
+            type: ActionType.FETCHING_PAGINATION_PRODUCTS_SUCCESS,
+            payload: success.data,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: ActionType.FETCHING_PAGINATION_PRODUCTS_FAILED,
+        });
+      });
+  };
+};
+
+
+const deleteProductAction =(id,owner,index)=>{
+  let adminData= JSON.parse(localStorage.getItem('adminData'))
+  return (dispatch) => {
+      dispatch({
+        type: ActionType.DELETING_PRODUCT,
+      })
+      let obj = { data: { admin:adminData.userId,owner } }
+      axios.delete(`${baseUrl}product/${id}`, obj)
+        .then((success) => {
+          console.log(success,'success')
+          if (success.data.code) {
+            toast.error(success.data.reason || success.data.message)
+            dispatch({
+              type: ActionType.PRODUCT_DELETED_FAIL,
+            })
+          } else {
+              dispatch({
+                type: ActionType.PRODUCT_DELETED_SUCCESS,
+                payload: index
+              })
+          }
+        })
+        .catch((err) => {
+          dispatch({
+            type: ActionType.PRODUCT_DELETED_FAIL,
+          })
+        })
+    }
+  }
   export {
     updTagAction,
     getAllCategory,
@@ -312,6 +447,11 @@ const uploadCategoryImg =(img,cond,editCategory,admin_ref)=>{
     uploadCategoryAction,
     uploadCategoryImg,
     updateCatDataAction,
-    saveEditCatToRedux
+    saveEditCatToRedux,
+    getAllUsersAction,
+    deleteUserAction,
+    getAllProduct,
+    getAllProducts,
+    deleteProductAction
   };
   

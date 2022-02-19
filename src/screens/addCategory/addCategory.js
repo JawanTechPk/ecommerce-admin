@@ -79,22 +79,18 @@ isLoadingImg?
 <Loader />
 </div>
 :
-<div className={Css.CateInpFileDiv}>
+<div className={Css.fileSpan}>
+{/* <div className={Css.CateInpFileDiv} > */}
+<label>
+                      Upload Images
 <input type="file" className="uploadCV"
-  style={{
-      border: "1px dotted #006838",
-      padding: 8,
-      marginLeft: '3%',
-      marginTop:40,
-      height:50,
-      width:'70%'
-    }}
     accept="image/*"
     onChange={(e) => {
         console.log(e.target.files,'e.target.files')
         uploadImg(e.target.files[0])
     }}
 />
+</label>
 </div>
 }
 <button className={Css.addBtnStl} onClick={()=>uploadCategory()}>

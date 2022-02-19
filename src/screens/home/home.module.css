@@ -22,6 +22,73 @@ h4{
   margin-left: 2%;
 }
 
+.mainTable{
+  display: inline;
+  border-top:1px solid black;
+  border-left:1px solid black;
+  border-bottom:1px solid black;
+  width: 100% !important;
+}
+.mainTableTwo{
+  display: inline;
+  border:1px solid black;
+  width: 100% !important;
+}
+
+.mainTr{
+  background-color: var(--main-color) !important;
+  color:white
+}
+.actionTd{
+  font-weight: bold;
+}
+.mainTable tr{
+  display: flex;
+
+  justify-content: space-around;
+width: 100%;
+}
+
+.trHighlight:hover{
+  background-color: rgb(226, 218, 218);
+}
+
+.mainTable th{
+  flex:1;
+text-align: left;
+padding: 10px;
+/* background-color: red; */
+}
+.mainTable td{
+  flex:1;
+text-align: right;
+padding: 10px;
+/* background-color: red; */
+}
+
+
+.mainTableTwo tr{
+  display: flex;
+
+  justify-content: space-around;
+width: 100%;
+}
+
+.mainTableTwo th{
+  flex:1;
+text-align: left;
+padding: 10px;
+/* background-color: red; */
+}
+.mainTableTwo td{
+  flex:1;
+text-align: right;
+padding: 10px;
+/* background-color: red; */
+}
+
+
+
 .cateInp{
     width:30%;
     border-radius:10px;
@@ -46,6 +113,28 @@ h4{
    align-items: center;
    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
+
+  .usersDiv{
+    display: flex;
+    margin: 10px;
+    margin-top: 5px;
+    justify-content: space-between;
+    border-radius:10px;
+     height: 80px !important; 
+     align-items: center;
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+.userIcon{
+  width:35px;height:35px;
+border-radius: 15px;
+margin-left:10px;
+margin-right:10px;
+}
+.usersDiv p{
+  margin: 0px;
+  font-size: 12px;
+}
+
    .imgDiv{
 display: flex;
 align-items: center;
@@ -74,10 +163,18 @@ white-space: nowrap;
   cursor:pointer;
 }
 
+.iconSearchStl{
+  height: 20px;
+  width:20px;
+  color:gray;
+  position: relative;
+  right: 30px;
+
+}
+
 .iconEditStl{
   height: 17px;
   width:15px;
-  margin-top: 5px;
   color:var(--hover-color);
   cursor:pointer;
 }
@@ -91,7 +188,7 @@ white-space: nowrap;
     height: 45px !important; 
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
    .tagName{
-     margin-top:20px;
+     margin-top:15px;
   margin-left: 10px;
   font-size: 14px;}
 
@@ -178,7 +275,7 @@ border:none
   .dropdownContent {
     display: flex;
     justify-content: space-around;
-  margin-top: 14px;
+  margin-top: 10px;
    margin-left:10px ;
     -webkit-transition: max-height 0.2s ease-in;
     transition: max-height 0.2s ease-in;
@@ -388,27 +485,31 @@ border:none
       -moz-appearance: textfield;
     }
   
-  
-  /* -------------------- */
-  
-  /*  */
-  
-  @media screen and (max-width: 900px) {
-    .iframeClass {
-      width: 350px;
-      height: 200px;
-    }
-  }
-  
-  @media screen and (max-width: 400px) {
-    .iframeClass {
-      width: 300px;
-      height: 200px;
-    }
-  }
+    .productDiv{
+      display: flex;
+      padding: 10px;
+      margin-top: 5px;
+      margin:10px;
+      width: 30%;
+/* justify-content: space-between; */
+      border-radius:10px;
+       /* height: 45px !important;  */
+       align-items: center;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
 
-
-
+.productDiv h2{
+  padding: 0px;
+  margin: 0px;
+}
+.adDetail{
+  display: flex;
+  margin-left: 5px;
+}
+.productDiv p{
+  padding: 0px;
+  margin: 0px;
+}
 
 
 
@@ -499,14 +600,14 @@ white-space: nowrap;
  height: 45px !important; 
  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
 .tagName{
-  margin-top:20px;
+  margin-top:15px;
 margin-left: 10px;
 font-size: 14px;}
 
 .dropdownContent {
   display: flex;
   justify-content: space-around;
-margin-top: 14px;
+margin-top: 10px;
  margin-left:10px ;
   -webkit-transition: max-height 0.2s ease-in;
   transition: max-height 0.2s ease-in;
@@ -546,7 +647,45 @@ margin-top: 14px;
 
 
   @media screen and (max-width: 860px) {
-   
+
+
+    .productDiv{
+      display: flex;
+      padding: 10px;
+      margin-top: 5px;
+      margin:10px;
+      width: 45%;
+/* justify-content: space-between; */
+      border-radius:10px;
+       /* height: 45px !important;  */
+       align-items: center;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+
+.adDetail{
+  display: flex;
+  margin-left: 5px;
+}
+.productDiv p{
+  padding: 0px;
+  font-size: 8px;
+  margin: 0px;
+  margin-top: 5px;
+}
+
+    .cateInp{
+      width:50%;
+      border-radius:10px;
+      margin-top: 20px;
+      height:50px;
+      background-color:#f2eded;
+      padding-left:10px;
+      border: none;
+      margin-left: 10px;
+  }
+  .cateInp:focus{
+      border: none;
+  }
 .cateDiv{
   display: flex;
   margin: 10px;
@@ -583,14 +722,14 @@ white-space: nowrap;
      height: 45px !important; 
      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
     .tagName{
-      margin-top:20px;
+      margin-top:15px;
     margin-left: 10px;
     font-size: 14px;}
     
     .dropdownContent {
       display: flex;
       justify-content: space-around;
-    margin-top: 14px;
+    margin-top: 10px;
      margin-left:10px ;
       -webkit-transition: max-height 0.2s ease-in;
       transition: max-height 0.2s ease-in;
@@ -695,6 +834,45 @@ border:none
 
   @media screen and (max-width: 500px) {
 
+
+    .productDiv{
+      display: flex;
+      padding: 10px;
+      margin-top: 5px;
+      margin:10px;
+      width: 90%;
+/* justify-content: space-between; */
+      border-radius:10px;
+       /* height: 45px !important;  */
+       align-items: center;
+       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+
+.adDetail{
+  display: flex;
+  margin-left: 5px;
+}
+.productDiv p{
+  padding: 0px;
+  font-size: 8px;
+  margin: 0px;
+  margin-top: 5px;
+}
+
+
+    .cateInp{
+      width:50%;
+      border-radius:10px;
+      margin-top: 20px;
+      height:50px;
+      background-color:#f2eded;
+      padding-left:10px;
+      border: none;
+      margin-left: 10px;
+  }
+  .cateInp:focus{
+      border: none;
+  }
 .cateDiv{
   display: flex;
   margin: 10px;
@@ -723,10 +901,6 @@ margin-top: 20px;
 margin-right: 10px;
 white-space: nowrap;
 }
-    .tagName{
-      margin-top:30px;
-     text-align:center;
-   font-size: 12px !important;}
    .tagDiv{
     display:flex;
     justify-content: space-between;
@@ -734,23 +908,37 @@ white-space: nowrap;
    height: 45px !important; 
    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
   .tagName{
-    margin-top:20px;
+    margin-top:15px;
   margin-left: 10px;
   font-size: 14px;}
   
   .dropdownContent {
     display: flex;
     justify-content: space-around;
-  margin-top: 14px;
+  margin-top: 10px;
    margin-left:10px ;
     -webkit-transition: max-height 0.2s ease-in;
     transition: max-height 0.2s ease-in;
   }
+
   }
 
 
 
       @media screen and (max-width: 380px) {
+        .cateInp{
+          width:80%;
+          border-radius:10px;
+          margin-top: 20px;
+          height:50px;
+          background-color:#f2eded;
+          padding-left:10px;
+          border: none;
+          margin-left: 10px;
+      }
+      .cateInp:focus{
+          border: none;
+      }
         .addBtnStl{
           background-color: var(--main-color) !important;
           color:white;
@@ -801,14 +989,14 @@ white-space: nowrap;
          height: 45px !important; 
          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
         .tagName{
-          margin-top:20px;
+          margin-top:15px;
         margin-left: 10px;
         font-size: 14px;}
         
         .dropdownContent {
           display: flex;
           justify-content: space-around;
-        margin-top: 14px;
+        margin-top: 10px;
          margin-left:10px ;
           -webkit-transition: max-height 0.2s ease-in;
           transition: max-height 0.2s ease-in;
@@ -930,7 +1118,7 @@ white-space: nowrap;
 }
            
               .tagName{
-                margin-top:30px;
+                margin-top:20px;
                text-align:center;
              font-size: 8px !important;}
             .tagDiv{
@@ -938,5 +1126,18 @@ white-space: nowrap;
               margin:10px; height: 80px; width: 30%;
               margin-left: 5%;
               box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+              .cateInp{
+                width:80%;
+                border-radius:10px;
+                margin-top: 20px;
+                height:50px;
+                background-color:#f2eded;
+                padding-left:10px;
+                border: none;
+                margin-left: 10px;
+            }
+            .cateInp:focus{
+                border: none;
+            }
           }
         
