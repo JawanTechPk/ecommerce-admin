@@ -14,6 +14,7 @@ const Otherfield = ({ maxLength, type, title, onchange, value }) => {
     <>
       <div>
         <input
+        disabled
           type={type}
           value={value}
           onChange={(e) => {

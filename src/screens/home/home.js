@@ -17,7 +17,7 @@ import {
   getAllProduct,
   getAllProducts,
   deleteProductAction,
-  editAdData
+  editAdData,
 } from "../../store/actions/settingAction/settingAction";
 import { BsPersonCircle, BsThreeDotsVertical } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -35,8 +35,17 @@ const Home = () => {
   const [tagNameUpd, setTagNameUpd] = useState(false);
   const [tagUpdData, setTagUpdData] = useState({});
   const { user } = useSelector((state) => state.userLoginReducer);
-  const { currentPaginationData,isPaginationLoading,paginationNo,allUsers, isLoadingTag, isLoading, categories, allTags,allProducts } =
-    useSelector((state) => state.settingReducer);
+  const {
+    currentPaginationData,
+    isPaginationLoading,
+    paginationNo,
+    allUsers,
+    isLoadingTag,
+    isLoading,
+    categories,
+    allTags,
+    allProducts,
+  } = useSelector((state) => state.settingReducer);
   const [characters, updateCharacters] = useState(categories);
   const [cateDisplay, setCateDisplay] = useState(true);
   const [tagDisplay, setTagDisplay] = useState(false);
@@ -123,30 +132,28 @@ const Home = () => {
     }
   };
 
-const deleteUser=(id,ind)=>{
-dispatch(deleteUserAction(id,ind))
-}
-const deleteProduct=(id,owner,ind)=>{
+  const deleteUser = (id, ind) => {
+    dispatch(deleteUserAction(id, ind));
+  };
+  const deleteProduct = (id, owner, ind) => {
+    dispatch(deleteProductAction(id, owner, ind));
+  };
 
-dispatch(deleteProductAction(id,owner,ind))
-}
+  // const handleScrolls = (e) => {
 
+  //     const bottom =
+  //       e.target.scrollHeight - 10 - e.target.scrollTop < e.target.clientHeight;
+  //     if (bottom) {
+  //         if (currentPaginationData !== 0) {
+  //         dispatch(getAllProducts(paginationNo));
+  //         }
+  //     }
+  //   };
 
-// const handleScrolls = (e) => {
-
-//     const bottom =
-//       e.target.scrollHeight - 10 - e.target.scrollTop < e.target.clientHeight;
-//     if (bottom) {
-//         if (currentPaginationData !== 0) {
-//         dispatch(getAllProducts(paginationNo));
-//         }
-//     }
-//   };
-
-const loadMore = () => {
-        if (currentPaginationData !== 0) {
-        dispatch(getAllProducts(paginationNo));
-        }
+  const loadMore = () => {
+    if (currentPaginationData !== 0) {
+      dispatch(getAllProducts(paginationNo));
+    }
   };
 
   const cardEditAd = (val) => {
@@ -155,10 +162,9 @@ const loadMore = () => {
     sessionStorage.setItem("editaddata", JSON.stringify(val));
   };
 
-
   return (
-    <div >
-    {/* <div      onScroll={handleScrolls}
+    <div>
+      {/* <div      onScroll={handleScrolls}
     style={{ overflowY: "scroll", maxHeight: "100vh" }}> */}
       <Navbar />
       <div className="container">
@@ -220,11 +226,11 @@ const loadMore = () => {
               <label htmlFor="tab23">Users</label>
             </li>
             <li className={`${Css.tab}`}>
-              <label htmlFor="tab24">Products</label>
+              <label htmlFor="tab24">Ads</label>
             </li>
           </ul>
         </div>
-                {/* CATEGORY WORK START */}
+        {/* CATEGORY WORK START */}
         {cateDisplay ? (
           <>
             <div>
@@ -285,7 +291,7 @@ const loadMore = () => {
         ) : null}
         {/* CATEGORY WORK END */}
 
-{/* TAGS WORK START */}
+        {/* TAGS WORK START */}
         {tagDisplay ? (
           <div>
             <h3 className={Css.tagHead}>Tags</h3>
@@ -367,7 +373,6 @@ const loadMore = () => {
 
         {/* TAGS WORK END */}
 
-
         {/* USERS WORK START */}
         {usersDisplay ? (
           <>
@@ -376,59 +381,67 @@ const loadMore = () => {
               {isLoading ? (
                 <Loader />
               ) : (
-                <div style={{ width: "100%",display:'flex' }}>
-<table className={Css.mainTable}>
-<tr className={Css.mainTr}>
-                      <th>User Name</th>
-                      <th>User Phone Number</th>
-                      <td className={Css.actionTd}>Action</td>
-                      </tr>
-                  {allUsers &&
-                    allUsers.length > 0 &&
-                    allUsers.map((val, ind) => {
-                      return <>
-                      {
-(ind+ 1 )% 2 !=0?
-<tr className={Css.trHighlight} key={ind}>
-                      <th>{val.user_name}</th>
-                      <th>{val.phone_number}</th>
-                      <td>   <MdDeleteOutline
-                            onClick={() => {
-                                deleteUser(val._id, ind);
-                            }}
-                            className={Css.iconDelStl}
-                          /></td>   
-                                 </tr>
-                      :null}
-                      </>;
-                    })}
-                    </table>
-                    <table className={Css.mainTableTwo}>
+                <div style={{ width: "100%", display: "flex" }}>
+                  <table className={Css.mainTable}>
                     <tr className={Css.mainTr}>
                       <th>User Name</th>
                       <th>User Phone Number</th>
                       <td className={Css.actionTd}>Action</td>
-                      </tr>
-                  {allUsers &&
-                    allUsers.length > 0 &&
-                    allUsers.map((val, ind) => {
-                      return <>
-                      {
-(ind+ 1 )% 2 ==0?
-<tr className={Css.trHighlight} key={ind}>
-                      <th>{val.user_name}</th>
-                      <th>{val.phone_number}</th>
-                      <td>   <MdDeleteOutline
-                            onClick={() => {
-                              deleteUser(val._id, ind);
-                            }}
-                            className={Css.iconDelStl}
-                          /></td>   
-                                 </tr>
-                      :null}
-                      </>;
-                    })}
-                    </table>
+                    </tr>
+                    {allUsers &&
+                      allUsers.length > 0 &&
+                      allUsers.map((val, ind) => {
+                        return (
+                          <>
+                            {(ind + 1) % 2 != 0 ? (
+                              <tr className={Css.trHighlight} key={ind}>
+                                <th>{val.user_name}</th>
+                                <th>{val.phone_number}</th>
+                                <td>
+                                  {" "}
+                                  <MdDeleteOutline
+                                    onClick={() => {
+                                      deleteUser(val._id, ind);
+                                    }}
+                                    className={Css.iconDelStl}
+                                  />
+                                </td>
+                              </tr>
+                            ) : null}
+                          </>
+                        );
+                      })}
+                  </table>
+                  <table className={Css.mainTableTwo}>
+                    <tr className={Css.mainTr}>
+                      <th>User Name</th>
+                      <th>User Phone Number</th>
+                      <td className={Css.actionTd}>Action</td>
+                    </tr>
+                    {allUsers &&
+                      allUsers.length > 0 &&
+                      allUsers.map((val, ind) => {
+                        return (
+                          <>
+                            {(ind + 1) % 2 == 0 ? (
+                              <tr className={Css.trHighlight} key={ind}>
+                                <th>{val.user_name}</th>
+                                <th>{val.phone_number}</th>
+                                <td>
+                                  {" "}
+                                  <MdDeleteOutline
+                                    onClick={() => {
+                                      deleteUser(val._id, ind);
+                                    }}
+                                    className={Css.iconDelStl}
+                                  />
+                                </td>
+                              </tr>
+                            ) : null}
+                          </>
+                        );
+                      })}
+                  </table>
                 </div>
               )}
             </div>
@@ -436,82 +449,107 @@ const loadMore = () => {
         ) : null}
         {/* USERS WORK END */}
 
-{/* PRODUCTS WORK START */}
+        {/* PRODUCTS WORK START */}
 
-{productsDisplay ? (
+        {productsDisplay ? (
           <>
             <h3>All Products</h3>
-            <div 
-             
-            style={{ display: "flex", flexWrap: "wrap", marginTop: 30 }}>
+            <div style={{ display: "flex", flexWrap: "wrap", marginTop: 30 }}>
               {isLoading ? (
                 <Loader />
               ) : (
-
                 allProducts &&
                 allProducts.length > 0 &&
                 allProducts.map((val, ind) => {
-                      return <div className={Css.productDiv}>
-
-<img src={val.images[0] && val.images[0].url &&  val.images[0].url} style={{height:100,width:70}}/>
-<div >
-    <div className={Css.adDetail} >
-<BsPersonCircle color="#008c8c" style={{marginTop:5,marginRight:5}}/>
-<p>{val.title}</p>
-    </div>
-    <div className={Css.adDetail}>
-<IoPricetag color="#008c8c" style={{marginTop:5,marginRight:5}}/>
-<p>{val.rental_price.day}</p>
-    </div>
-    <div className={Css.adDetail}>
-<IoLocation color="#008c8c" style={{marginTop:5,marginRight:5}}/>
-<p>{val.address.country + ", " + val.address.city}</p>
-    </div>
-</div> 
-<div >
-<FiEdit
-onClick={()=>cardEditAd(val)}
-                            type="button"
-                            data-toggle="modal"
-                            data-target="#exampleModal"
-                            className={Css.iconEditStl}
+                  return (
+                    <>
+                    <div className={Css.productDiv}>
+                      <div style={{display:'flex',alignItems:'center'}}>
+                      <img
+                        src={
+                          val.images[0] &&
+                          val.images[0].url &&
+                          val.images[0].url
+                        }
+                        style={{ height: 100, width: 70 }}
+                      />
+                      <div>
+                        <div className={Css.adDetail}>
+                          <BsPersonCircle
+                            color="#008c8c"
+                            style={{ marginTop: 5, marginRight: 5 }}
                           />
-                          <MdDeleteOutline
-                            className={Css.iconDelStl}
-                            onClick={()=>deleteProduct(val._id,val.owner._id,ind)}
+                          <p>{val.title}</p>
+                        </div>
+                        <div className={Css.adDetail}>
+                          <IoPricetag
+                            color="#008c8c"
+                            style={{ marginTop: 5, marginRight: 5 }}
                           />
-</div> 
-</div> 
-                    })
-                      
-              )
-}
+                          <p>{val.rental_price.day}</p>
+                        </div>
+                        <div className={Css.adDetail}>
+                          <IoLocation
+                            color="#008c8c"
+                            style={{ marginTop: 5, marginRight: 5 }}
+                          />
+                          <p>{val.address.country + ", " + val.address.city}</p>
+                        </div>
+                      </div>
+                      </div>
+                      <div style={{display:'flex',position:'relative',top:-40}}>
+                        <FiEdit
+                          onClick={() => cardEditAd(val)}
+                          type="button"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                          className={Css.iconEditStlPro}
+                        />
+                        <MdDeleteOutline
+                          className={Css.iconDelStl}
+                          onClick={() =>
+                            deleteProduct(val._id, val.owner._id, ind)
+                          }
+                        />
+                      </div>
+                    </div>
 
-{isPaginationLoading ? (
-    <div
-    style={{
-        display: "flex",
-        justifyContent: "center",
-        marginBottom: 40,
-    }}
-    >
+                    </>
+                  );
+                })
+              )}
+
+              {isPaginationLoading ? (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginBottom: 40,
+                  }}
+                >
                   <Loader />
                 </div>
               ) : null}
-</div>
-</>)
-:null
-}
-              {
-             productsDisplay  && currentPaginationData!=0?
-                  <div style={{display:'flex',justifyContent:'center',}}>
-                   <span onClick={()=>loadMore()} style={{backgroundColor:'#008c8c',padding:10,color:'white',borderRadius:10,marginBottom:20}}>Load More</span>
-                   </div>
-                   :null
-              }
-{/* PRODUCTS WORK END */}
-
-
+            </div>
+          </>
+        ) : null}
+        {productsDisplay && currentPaginationData != 0 ? (
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <span
+              onClick={() => loadMore()}
+              style={{
+                backgroundColor: "#008c8c",
+                padding: 10,
+                color: "white",
+                borderRadius: 10,
+                marginBottom: 20,
+              }}
+            >
+              Load More
+            </span>
+          </div>
+        ) : null}
+        {/* PRODUCTS WORK END */}
       </div>
     </div>
   );

@@ -303,6 +303,7 @@ console.log(addObj,'addObj')
               <div className={Css.insAmountDiv}>
                 <span className={Css.insSpan}>Insurance amount : </span>
                 <input
+                disabled
                   value={addObj.insurance_price}
                   // onChange={(e) => { setAddObj({ ...addObj, insurance_price: e.target.value }) }}
                   // onChange={(e) =>

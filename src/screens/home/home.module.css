@@ -177,6 +177,14 @@ white-space: nowrap;
   width:15px;
   color:var(--hover-color);
   cursor:pointer;
+  margin-top: 5px;
+}
+.iconEditStlPro{
+  height: 17px;
+  width:15px;
+  color:var(--hover-color);
+  cursor:pointer;
+  margin-top: 5px;
 }
 .optMenuStl{
 
@@ -491,7 +499,7 @@ border:none
       margin-top: 5px;
       margin:10px;
       width: 30%;
-/* justify-content: space-between; */
+justify-content: space-between;
       border-radius:10px;
        /* height: 45px !important;  */
        align-items: center;
@@ -661,7 +669,7 @@ margin-top: 10px;
       margin-top: 5px;
       margin:10px;
       width: 45%;
-/* justify-content: space-between; */
+justify-content: space-between;
       border-radius:10px;
        /* height: 45px !important;  */
        align-items: center;
@@ -847,7 +855,7 @@ border:none
       margin-top: 5px;
       margin:10px;
       width: 90%;
-/* justify-content: space-between; */
+justify-content: space-between;
       border-radius:10px;
        /* height: 45px !important;  */
        align-items: center;

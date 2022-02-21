@@ -107,9 +107,9 @@ const editAds = (addObj, user, history) => {
           } else {
             dispatch(stopLoading());
             toast.success(success.data.message);
-            // setTimeout(()=>{
-            //     history.push('/')
-            // },2000)
+            setTimeout(()=>{
+                history.push('/home')
+            },2000)
             dispatch({
               type: ActionType.USER_AD_UPDATE_SUCCESS,
             });

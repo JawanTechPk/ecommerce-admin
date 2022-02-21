@@ -165,9 +165,10 @@
     color: var(--main-color);
   }
   .insFildStl {
-    border: 1px solid gray;
+    border: 1px solid black;
     border-radius: 5px;
     width: 100px;
+    color:black;
     padding: 8px;
   }
   
