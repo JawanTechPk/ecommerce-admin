@@ -1,0 +1,62 @@
+.priceMainDiv {
+  width: 100%;
+}
+.priceDivStyle {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.priceFieldStyle:focus {
+  border: 3px solid #008c8c;
+  outline: 0px !important;
+  box-shadow: 0px !important;
+}
+.priceFieldStyle {
+  width: 100%;
+  margin-left: auto;
+  padding: 9px;
+  color: black;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.priceTxtStyle {
+  font-size: 12px;
+  color: #008c8c;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@media screen and (max-width: 900px) {
+  .priceFieldStyle {
+    width: 90%;
+    margin-left: auto;
+    padding: 9px;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .priceFieldStyle {
+    width: 100%;
+    margin-left: auto;
+    padding: 9px;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 5px;
+  }
+}

@@ -16,7 +16,8 @@ import {
   deleteUserAction,
   getAllProduct,
   getAllProducts,
-  deleteProductAction
+  deleteProductAction,
+  editAdData
 } from "../../store/actions/settingAction/settingAction";
 import { BsPersonCircle, BsThreeDotsVertical } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
@@ -147,6 +148,13 @@ const loadMore = () => {
         dispatch(getAllProducts(paginationNo));
         }
   };
+
+  const cardEditAd = (val) => {
+    dispatch(editAdData(val));
+    history.push("/editad");
+    sessionStorage.setItem("editaddata", JSON.stringify(val));
+  };
+
 
   return (
     <div >
@@ -462,6 +470,7 @@ const loadMore = () => {
 </div> 
 <div >
 <FiEdit
+onClick={()=>cardEditAd(val)}
                             type="button"
                             data-toggle="modal"
                             data-target="#exampleModal"

@@ -4,9 +4,11 @@ import {
   
 } from "./AuthReducer";
 import {settingReducer} from './settingReducer'
+import {createAdReducer} from './createAdReducer'
 const rootReducer = combineReducers({
   userLoginReducer,
-  settingReducer
+  settingReducer,
+  createAdReducer
 });
 
 export default rootReducer;

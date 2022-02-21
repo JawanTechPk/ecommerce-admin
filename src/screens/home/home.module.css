@@ -514,6 +514,12 @@ border:none
 
 
   @media screen and (max-width: 1000px) {
+
+    .productDiv p{
+      padding: 0px;
+      margin: 0px;
+      font-size: 10px;
+    }
    
 .cateDiv{
   display: flex;
@@ -668,7 +674,7 @@ margin-top: 10px;
 }
 .productDiv p{
   padding: 0px;
-  font-size: 8px;
+  font-size: 10px;
   margin: 0px;
   margin-top: 5px;
 }
@@ -854,7 +860,7 @@ border:none
 }
 .productDiv p{
   padding: 0px;
-  font-size: 8px;
+  font-size: 12px;
   margin: 0px;
   margin-top: 5px;
 }
@@ -926,6 +932,14 @@ white-space: nowrap;
 
 
       @media screen and (max-width: 380px) {
+
+        .productDiv p{
+          padding: 0px;
+          font-size: 12px;
+          margin: 0px;
+          margin-top: 5px;
+        }
+        
         .cateInp{
           width:80%;
           border-radius:10px;

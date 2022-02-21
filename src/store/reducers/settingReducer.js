@@ -16,6 +16,7 @@ const INITIAL_STATE = {
   allProducts:[],
   paginationNo: 0,
   isPaginationLoading: false,
+  editAd: {},
 };
 
 const settingReducer = (state = INITIAL_STATE, action) => {
@@ -261,6 +262,17 @@ const settingReducer = (state = INITIAL_STATE, action) => {
                   ...state,
                   isLoading: false,
                 };
+                case ActionType.EDIT_AD_DATA:
+                  return {
+                    ...state,
+                    editAd: action.payload,
+                  };
+
+                case ActionType.EDIT_AD_FIELD:
+                  return {
+                    ...state,
+                    editAd: { ...state.editAd, [action.fieldName]: action.fieldVal },
+                  };
     default:
       return state;
   }

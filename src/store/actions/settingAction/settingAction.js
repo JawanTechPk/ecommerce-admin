@@ -437,6 +437,24 @@ const deleteProductAction =(id,owner,index)=>{
         })
     }
   }
+
+  const editAdData = (data) => {
+    return (dispatch) => {
+      dispatch({ type: ActionType.EDIT_AD_DATA, payload: data });
+    };
+  };
+
+  const editAdField = (fieldName, fieldVal) => {
+    return (dispatch) => {
+      dispatch({
+        type: ActionType.EDIT_AD_FIELD,
+        fieldName: [fieldName],
+        fieldVal: fieldVal,
+      });
+    };
+  };
+
+  
   export {
     updTagAction,
     getAllCategory,
@@ -452,6 +470,8 @@ const deleteProductAction =(id,owner,index)=>{
     deleteUserAction,
     getAllProduct,
     getAllProducts,
-    deleteProductAction
+    deleteProductAction,
+    editAdField,
+    editAdData
   };
   
