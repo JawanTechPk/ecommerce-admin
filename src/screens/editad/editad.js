@@ -8,6 +8,7 @@ import Pricefield from "../../UIcomponents/priceField/priceField";
 import Otherfield from '../../UIcomponents/otherField/otherField'
 import Buttons from "../../UIcomponents/button/button";
 import { ToastContainer } from "react-toastify";
+import { getUserData } from "../../store/actions/userAction/UserAuthAction";
 // import { Country, State, City } from "country-state-city";
 import { useDispatch, useSelector } from "react-redux";
 import { editAds } from "../../store/actions/editAdAction/editAdAction";
@@ -15,6 +16,8 @@ import { useHistory, useLocation, Prompt } from "react-router-dom";
 import {
   editAdField,
   editAdData,
+  getAllTags,
+  getAllCategory
 } from "../../store/actions/settingAction/settingAction";
 import TagsInput from "../../UIcomponents/tagInput/tagsInputs";
 import Loader from "../../UIcomponents/loader/loader";
@@ -22,13 +25,13 @@ import { ImCross } from "react-icons/im";
 
 const EditAd = () => {
 
-  const myfun = () => {
-    alert("Hello world");
-  };
-  window.onbeforeunload = function () {
-    myfun();
-    return "Are you sure you want to leave?";
-  };
+  // const myfun = () => {
+  //   alert("Hello world");
+  // };
+  // window.onbeforeunload = function () {
+  //   myfun();
+  //   return "Are you sure you want to leave?";
+  // };
 
   const history = useHistory();
   const locationdata = useLocation();
@@ -55,8 +58,11 @@ console.log(user,'user')
     const editAdDatafromStorage = JSON.parse(
       sessionStorage.getItem("editaddata")
     );
+    dispatch(getAllTags());
+    dispatch(getAllCategory());
     dispatch(editAdData(editAdDatafromStorage));
     setAddObj(editAd);
+    dispatch(getUserData());
     console.log(editAdDatafromStorage);
   }, []);
 
@@ -77,14 +83,14 @@ console.log(user,'user')
 console.log(addObj,'addObj')
   return (
     <div>
-      <Prompt
+      {/* <Prompt
         message="You have unsaved changes, are you sure you want to leave?"
         title="Leave this page"
         cancelText="Cancel"
         okText="Confirm"
         onOK={() => true}
         onCancel={() => false}
-      />
+      /> */}
       <Navbar />
       <ToastContainer />
       <div className={Css.mainDiv}>

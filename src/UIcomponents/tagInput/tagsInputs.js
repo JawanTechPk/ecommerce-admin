@@ -45,11 +45,18 @@ const TagsInput = ({
     setAddObj(values);
   };
 
-  const deleteTag = (index) => {
-    val.splice(index, 1);
-    // deleteTags(val)
-    deleteTags(value);
-    setVal([...val]);
+  // const deleteTag = (index) => {
+  //   val.splice(index, 1);
+  //   // deleteTags(val)
+  //   deleteTags(value);
+  //   setVal([...val]);
+  // };
+
+  const deleteTag = (index,tagArr) => {
+    let vals = [...tagArr];
+    vals.splice(index, 1);
+    console.log(vals,'val');
+    deleteTags(vals)
   };
 
   const getSuggestions = () => {
@@ -82,7 +89,7 @@ const TagsInput = ({
             <li
               className={Css.selectedTag}
               key={index}
-              onClick={() => deleteTag(index)}
+              onClick={() => deleteTag(index,value)}
             >
               {item}
             </li>
