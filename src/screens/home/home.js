@@ -514,7 +514,7 @@ const Home = () => {
                             deleteProduct(val._id, val.owner._id, ind)
                           }
                         />
-                        <img onClick={()=>{history.push('/reassignad',{val,ind})}} src={reassign} style={{width:15,height:15,marginTop:8}}/>
+                        <img onClick={()=>{history.push('/reassignad',{val,ind})}} src={reassign} style={{width:15,height:15,marginTop:8,cursor:"pointer"}}/>
                       </div>
                     </div>
 

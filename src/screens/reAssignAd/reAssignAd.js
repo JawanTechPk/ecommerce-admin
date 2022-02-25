@@ -58,7 +58,7 @@ const Reassignadd = () => {
         //   swal("Poof! Your imaginary file has been deleted!", {
         //     icon: "success",
         //   });
-         dispatch(assignAdAction(adId,newUserId,user.userId,adIndex))
+         dispatch(assignAdAction(adId,newUserId,user.userId,adIndex,history))
         } 
       });
   };
