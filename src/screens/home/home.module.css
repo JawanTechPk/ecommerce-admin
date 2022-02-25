@@ -233,7 +233,7 @@ border: none;
   margin-top: 38px;
   margin-left: 3%;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
 border:none
 }
 
@@ -462,7 +462,7 @@ border:none
       border-left: 0px;
       border-radius: 0px;
     }
-    button {
+    /* button {
       width: 12%;
       height: 44px;
       margin-left: 30px;
@@ -471,16 +471,14 @@ border:none
       outline: none !important;
       border: none !important;
       font-size: 20px;
-      /* // border-radius: 5px; */
+       border-radius: 5px;
       
     }
 
     button:hover{
-      
-        background-color: black !important;
-      
+        background-color: black !important; 
     }
-  
+   */
     /* // Remove Arrow */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
@@ -759,7 +757,7 @@ white-space: nowrap;
   margin-top: 38px;
   margin-left: 3%;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
 border:none
 }
 
@@ -971,7 +969,7 @@ white-space: nowrap;
           margin-top: 38px;
           margin-left: 3%;
           font-weight: bold;
-          border-radius: 10px;
+          border-radius: 5px;
         border:none
         }
 

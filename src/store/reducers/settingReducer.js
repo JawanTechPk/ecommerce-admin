@@ -13,10 +13,11 @@ const INITIAL_STATE = {
   isLoadingImg: false,
   editCategory: {},
   allUsers: [],
-  allProducts:[],
+  allProducts: [],
   paginationNo: 0,
   isPaginationLoading: false,
   editAd: {},
+  assignLoading:false
 };
 
 const settingReducer = (state = INITIAL_STATE, action) => {
@@ -220,59 +221,79 @@ const settingReducer = (state = INITIAL_STATE, action) => {
         ...state,
         allProducts: [],
       };
-      case ActionType.FETCHING_PAGINATION_PRODUCTS:
-        return {
-          ...state,
-          isPaginationLoading: true,
-          paginationNo: state.paginationNo + 50,
-        };
-      case ActionType.NODATA_FETCHING_PAGINATION_PRODUCTS:
-        return {
-          ...state,
-          isPaginationLoading: false,
-          currentPaginationData: 0,
-        };
-      case ActionType.FETCHING_PAGINATION_PRODUCTS_SUCCESS:
-        return {
-          ...state,
-          isPaginationLoading: false,
-          allProducts: [...state.allProducts, ...action.payload],
-          currentPaginationData: action.payload.length,
-        };
-      case ActionType.FETCHING_PAGINATION_PRODUCTS_FAILED:
-        return {
-          ...state,
-          isPaginationLoading: false,
-        };
-        case ActionType.DELETING_PRODUCT:
-            return {
-              ...state,
-              isLoading: true,
-            };
-            case ActionType.PRODUCT_DELETED_SUCCESS:
-                let arr5 = [...state.allProducts];
-                arr5.splice(action.payload, 1);
-                return {
-                  ...state,
-                  isLoading: false,
-                  allProducts: arr5,
-                };
-            case ActionType.PRODUCT_DELETED_FAIL:
-                return {
-                  ...state,
-                  isLoading: false,
-                };
-                case ActionType.EDIT_AD_DATA:
-                  return {
-                    ...state,
-                    editAd: action.payload,
-                  };
+    case ActionType.FETCHING_PAGINATION_PRODUCTS:
+      return {
+        ...state,
+        isPaginationLoading: true,
+        paginationNo: state.paginationNo + 50,
+      };
+    case ActionType.NODATA_FETCHING_PAGINATION_PRODUCTS:
+      return {
+        ...state,
+        isPaginationLoading: false,
+        currentPaginationData: 0,
+      };
+    case ActionType.FETCHING_PAGINATION_PRODUCTS_SUCCESS:
+      return {
+        ...state,
+        isPaginationLoading: false,
+        allProducts: [...state.allProducts, ...action.payload],
+        currentPaginationData: action.payload.length,
+      };
+    case ActionType.FETCHING_PAGINATION_PRODUCTS_FAILED:
+      return {
+        ...state,
+        isPaginationLoading: false,
+      };
+    case ActionType.DELETING_PRODUCT:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case ActionType.PRODUCT_DELETED_SUCCESS:
+      let arr5 = [...state.allProducts];
+      arr5.splice(action.payload, 1);
+      return {
+        ...state,
+        isLoading: false,
+        allProducts: arr5,
+      };
+    case ActionType.PRODUCT_DELETED_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case ActionType.EDIT_AD_DATA:
+      return {
+        ...state,
+        editAd: action.payload,
+      };
 
-                case ActionType.EDIT_AD_FIELD:
-                  return {
-                    ...state,
-                    editAd: { ...state.editAd, [action.fieldName]: action.fieldVal },
-                  };
+    case ActionType.EDIT_AD_FIELD:
+      return {
+        ...state,
+        editAd: { ...state.editAd, [action.fieldName]: action.fieldVal },
+      };
+
+    case ActionType.ASSIGNING_PRODUCT:
+      return {
+        ...state,
+        assignLoading:true
+      };
+    case ActionType.ASSIGNING_PRODUCT_SUCCESS:
+      let arr6 = [...state.allProducts];
+      // arr6.splice(action.payload, 1);
+      arr6[action.adIndex]=action.payload
+      return {
+        ...state,
+        allProducts: arr6,
+        assignLoading:false
+      };
+    case ActionType.ASSIGNING_PRODUCT_FAIL:
+      return {
+        ...state,
+        assignLoading:false
+      };
     default:
       return state;
   }

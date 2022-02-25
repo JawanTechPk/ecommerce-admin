@@ -28,6 +28,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Loader from "../../UIcomponents/loader/loader";
 import AddCategory from "../addCategory/addCategory";
 import { ToastContainer, toast } from "react-toastify";
+import reassign from '../../images/reassign.png'
 const Home = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -63,6 +64,7 @@ const Home = () => {
     dispatch(getAllCategory());
     dispatch(getAllUsersAction());
     dispatch(getAllProduct());
+    
   }, []);
 
   const deleteTag = (id, ind) => {
@@ -461,6 +463,7 @@ const Home = () => {
                 allProducts &&
                 allProducts.length > 0 &&
                 allProducts.map((val, ind) => {
+                  console.log(val,'val')
                   return (
                     <>
                     <div className={Css.productDiv}>
@@ -511,6 +514,7 @@ const Home = () => {
                             deleteProduct(val._id, val.owner._id, ind)
                           }
                         />
+                        <img onClick={()=>{history.push('/reassignad',{val,ind})}} src={reassign} style={{width:15,height:15,marginTop:8}}/>
                       </div>
                     </div>
 

@@ -454,8 +454,40 @@ const deleteProductAction =(id,owner,index)=>{
     };
   };
 
+  const assignAdAction =(productId,assignUserId,adminId,adIndex)=>{
+    return (dispatch) => {
+        dispatch({
+          type: ActionType.ASSIGNING_PRODUCT,
+        })
+        let obj = { productId,assignUserId,adminId }
+        axios.post(`${baseUrl}adassigntoanotheruser`, obj)
+          .then((success) => {
+            console.log(success,'success')
+            if (success.data.code) {
+              toast.error(success.data.reason || success.data.message)
+              dispatch({
+                type: ActionType.ASSIGNING_PRODUCT_FAIL,
+              })
+            } else {
+                dispatch({
+                  type: ActionType.ASSIGNING_PRODUCT_SUCCESS,
+                  payload: success.data,
+                  adIndex
+                })
+                toast.success("Successfully Assigned")
+            }
+          })
+          .catch((err) => {
+            dispatch({
+              type: ActionType.ASSIGNING_PRODUCT_FAIL,
+            })
+          })
+      }
+    } 
+
   
   export {
+    assignAdAction,
     updTagAction,
     getAllCategory,
     getAllTags,

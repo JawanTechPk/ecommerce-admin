@@ -47,8 +47,9 @@
     font-size: 1vw;
     margin-top: 38px;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-left: 10px;
+    border:none
    
 }
 .addBtnStl:hover{
@@ -143,7 +144,7 @@
         margin-top: 38px;
         margin-left: 3%;
         font-weight: bold;
-        border-radius: 10px;
+        border-radius: 5px !important;
         margin-left: 5px;
 
     }
