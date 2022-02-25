@@ -454,7 +454,7 @@ const deleteProductAction =(id,owner,index)=>{
     };
   };
 
-  const assignAdAction =(productId,assignUserId,adminId,adIndex)=>{
+  const assignAdAction =(productId,assignUserId,adminId,adIndex,history)=>{
     return (dispatch) => {
         dispatch({
           type: ActionType.ASSIGNING_PRODUCT,
@@ -474,7 +474,7 @@ const deleteProductAction =(id,owner,index)=>{
                   payload: success.data,
                   adIndex
                 })
-                toast.success("Successfully Assigned")
+                history.push('/home')
             }
           })
           .catch((err) => {
