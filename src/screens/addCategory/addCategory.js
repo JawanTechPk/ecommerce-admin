@@ -67,7 +67,7 @@ const uploadImg=(img)=>{
 <div className={Css.CateInpPosiDiv}>
 <input placeholder="Position"
     type = "text"
-    maxlength ="5"  value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
+    maxLength ="5"  value={catPosi} onChange={(e)=>setCatPosi(e.target.value)} className={Css.cateInpPosi}/>
 </div>
 
 {

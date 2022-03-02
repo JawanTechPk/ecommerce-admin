@@ -1,0 +1,15 @@
+.chatBtnBox {
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  /* border: 1px solid red; */
+  border-radius: 50%;
+  background-color: var(--main-color);
+  padding: 15px;
+  transition: 0.6s all ease;
+}
+
+.chatBtnBox:hover {
+  transform: rotate(360deg);
+  cursor: pointer;
+}
