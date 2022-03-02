@@ -28,7 +28,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Loader from "../../UIcomponents/loader/loader";
 import AddCategory from "../addCategory/addCategory";
 import { ToastContainer, toast } from "react-toastify";
-import reassign from '../../images/reassign.png'
+import reassign from "../../images/reassign.png";
+import ChatBtn from "../../UIcomponents/chatApp/chatBtn";
 const Home = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -64,7 +65,6 @@ const Home = () => {
     dispatch(getAllCategory());
     dispatch(getAllUsersAction());
     dispatch(getAllProduct());
-    
   }, []);
 
   const deleteTag = (id, ind) => {
@@ -169,6 +169,7 @@ const Home = () => {
       {/* <div      onScroll={handleScrolls}
     style={{ overflowY: "scroll", maxHeight: "100vh" }}> */}
       <Navbar />
+      <ChatBtn />
       <div className="container">
         <ToastContainer />
         <div className={`${Css.tabbed}`}>
@@ -265,7 +266,7 @@ const Home = () => {
                     searchCatArr.length > 0 &&
                     searchCatArr.map((val, ind) => {
                       return (
-                        <div className={Css.cateDiv}>
+                        <div key={ind} className={Css.cateDiv}>
                           <div className={Css.imgDiv}>
                             <img src={val.image} className={Css.cateImg} />
                             <p className={Css.catName}>{val.category_name}</p>
@@ -463,61 +464,79 @@ const Home = () => {
                 allProducts &&
                 allProducts.length > 0 &&
                 allProducts.map((val, ind) => {
-                  console.log(val,'val')
+                  console.log(val, "val");
                   return (
                     <>
-                    <div className={Css.productDiv}>
-                      <div style={{display:'flex',alignItems:'center'}}>
-                      <img
-                        src={
-                          val.images[0] &&
-                          val.images[0].url &&
-                          val.images[0].url
-                        }
-                        style={{ height: 100, width: 70 }}
-                      />
-                      <div>
-                        <div className={Css.adDetail}>
-                          <BsPersonCircle
-                            color="#008c8c"
-                            style={{ marginTop: 5, marginRight: 5 }}
+                      <div className={Css.productDiv}>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <img
+                            src={
+                              val.images[0] &&
+                              val.images[0].url &&
+                              val.images[0].url
+                            }
+                            style={{ height: 100, width: 70 }}
                           />
-                          <p>{val.title}</p>
+                          <div>
+                            <div className={Css.adDetail}>
+                              <BsPersonCircle
+                                color="#008c8c"
+                                style={{ marginTop: 5, marginRight: 5 }}
+                              />
+                              <p>{val.title}</p>
+                            </div>
+                            <div className={Css.adDetail}>
+                              <IoPricetag
+                                color="#008c8c"
+                                style={{ marginTop: 5, marginRight: 5 }}
+                              />
+                              <p>{val.rental_price.day}</p>
+                            </div>
+                            <div className={Css.adDetail}>
+                              <IoLocation
+                                color="#008c8c"
+                                style={{ marginTop: 5, marginRight: 5 }}
+                              />
+                              <p>
+                                {val.address.country + ", " + val.address.city}
+                              </p>
+                            </div>
+                          </div>
                         </div>
-                        <div className={Css.adDetail}>
-                          <IoPricetag
-                            color="#008c8c"
-                            style={{ marginTop: 5, marginRight: 5 }}
+                        <div
+                          style={{
+                            display: "flex",
+                            position: "relative",
+                            top: -40,
+                          }}
+                        >
+                          <FiEdit
+                            onClick={() => cardEditAd(val)}
+                            type="button"
+                            data-toggle="modal"
+                            data-target="#exampleModal"
+                            className={Css.iconEditStlPro}
                           />
-                          <p>{val.rental_price.day}</p>
-                        </div>
-                        <div className={Css.adDetail}>
-                          <IoLocation
-                            color="#008c8c"
-                            style={{ marginTop: 5, marginRight: 5 }}
+                          <MdDeleteOutline
+                            className={Css.iconDelStl}
+                            onClick={() =>
+                              deleteProduct(val._id, val.owner._id, ind)
+                            }
                           />
-                          <p>{val.address.country + ", " + val.address.city}</p>
+                          <img
+                            onClick={() => {
+                              history.push("/reassignad", { val, ind });
+                            }}
+                            src={reassign}
+                            style={{
+                              width: 15,
+                              height: 15,
+                              marginTop: 8,
+                              cursor: "pointer",
+                            }}
+                          />
                         </div>
                       </div>
-                      </div>
-                      <div style={{display:'flex',position:'relative',top:-40}}>
-                        <FiEdit
-                          onClick={() => cardEditAd(val)}
-                          type="button"
-                          data-toggle="modal"
-                          data-target="#exampleModal"
-                          className={Css.iconEditStlPro}
-                        />
-                        <MdDeleteOutline
-                          className={Css.iconDelStl}
-                          onClick={() =>
-                            deleteProduct(val._id, val.owner._id, ind)
-                          }
-                        />
-                        <img onClick={()=>{history.push('/reassignad',{val,ind})}} src={reassign} style={{width:15,height:15,marginTop:8,cursor:"pointer"}}/>
-                      </div>
-                    </div>
-
                     </>
                   );
                 })

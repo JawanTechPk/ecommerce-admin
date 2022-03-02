@@ -1,0 +1,341 @@
+:root {
+  --main-color: #008c8c;
+  --hover-color: #00bfbf;
+  --font: "Poppins", sans-serif;
+  --whiteBackcolor: #fff;
+  --greyBackcolor: #e5e5e5;
+  --sender-color: #008c8c;
+  --reciving-color: #00d8d8;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.mainContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.head {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-bottom: 1px solid black; */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--main-color);
+}
+
+.head p {
+  color: white;
+  font-size: 35px;
+  font-weight: bolder;
+  text-shadow: white;
+}
+
+.leftContainer {
+  background-color: var(--hover-color);
+  width: 35%;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.headSearchChat {
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.headSearchChat input {
+  width: 90%;
+  height: 70%;
+  outline: none;
+  border: none;
+  background-color: rgb(250, 250, 250);
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.oneChatContainer {
+  overflow-y: scroll !important;
+  height: calc(100% - (70px + 45px));
+}
+
+.oneChatContainer::-webkit-scrollbar {
+  width: 4px;
+}
+
+.oneChatContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.oneChatContainer::-webkit-scrollbar-thumb {
+  background: rgb(185, 185, 185);
+}
+
+.oneChatContainer::-webkit-scrollbar-thumb:hover {
+  background: rgb(191, 191, 191);
+}
+
+.oneChat {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: white;
+  height: 100px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.294);
+  /* box-shadow: 0px -3px 10px -1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 10px -1px rgba(0, 0, 0, 0.75); */
+}
+
+.oneChat:hover {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
+.oneChat .chatAvatar {
+  background-color: #00bfbf;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  margin-left: 20px;
+  object-fit: cover;
+}
+
+.oneChat .phoneNumber {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: medium;
+  padding-left: 30px;
+}
+
+/* Right COntainer */
+
+.rightContainer {
+  background-color: var(--greyBackcolor);
+  width: 65%;
+  height: 100vh;
+}
+
+.chatHead {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1px solid black; */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--main-color);
+  border-left: 1px solid white;
+}
+
+.chatHead .chatHeadAvatar {
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.chatHead .chatHeadphoneNumber {
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  text-shadow: white;
+  margin-left: 30px;
+}
+
+/* Chat Box */
+
+.chatBody {
+  position: relative;
+  width: 88%;
+  height: 65vh;
+  padding: 50px;
+  overflow-y: auto;
+}
+
+.message {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.message p {
+  position: relative;
+  right: 0;
+  text-align: right;
+  max-width: 65%;
+  padding: 12px;
+  background: var(--main-color);
+  border-radius: 10px;
+  overflow-wrap: break-word;
+  color: white;
+}
+
+.message p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -12px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    135deg,
+    var(--main-color) 0%,
+    var(--main-color) 50%,
+    transparent 50%,
+    transparent
+  );
+}
+
+.message p span {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.85em;
+  opacity: 0.5;
+}
+
+.myMessage {
+  justify-content: flex-end;
+}
+
+.incomingMessage {
+  justify-content: flex-start;
+}
+
+.incomingMessage p {
+  background: #fff;
+  text-align: left;
+  overflow-wrap: break-word;
+  color: black;
+}
+
+.incomingMessage p::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -12px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(
+    225deg,
+    #fff 0%,
+    #fff 50%,
+    transparent 50%,
+    transparent
+  );
+}
+
+/* .chatBody {
+    padding: 0px 0px 20px 20px;
+    background-color: #00bfbf;
+  } */
+
+/* .message {
+    overflow-y: scroll;
+    height: 75vh;
+  } */
+/* 
+  .message .sender {
+    background-color: var(--sender-color);
+    color: white;
+    width: 50%;
+    margin: 20px;
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+    border-radius: 25px;
+    border-top-right-radius: 0px;
+    font-size: 18px;
+    float: right;
+  }
+  
+  .message .reciving {
+    background-color: var(--reciving-color);
+    color: white;
+    width: 50%;
+    margin: 20px;
+    display: flex;
+    justify-content: left;
+    padding: 10px;
+    border-radius: 25px;
+    border-top-left-radius: 0px;
+    font-size: 18px;
+    float: left;
+  } */
+
+/* Message Body Scroll Bar */
+
+.chatBody::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+.chatBody::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.chatBody::-webkit-scrollbar-thumb {
+  background: rgb(185, 185, 185);
+}
+
+/* Handle on hover */
+.chatBody::-webkit-scrollbar-thumb:hover {
+  background: rgb(191, 191, 191);
+}
+
+/* ------------ */
+
+.chatFooter {
+  height: 80px;
+  width: 65%;
+  background-color: var(--main-color);
+  bottom: 0px;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.messageIputDiv {
+  width: 80%;
+}
+
+.messageIput {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding: 3px 3px 3px 10px;
+}
+
+.sendButton {
+  background-color: transparent;
+  border: none !important;
+  outline: none;
+}
+
+.sendButtonIcon {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}

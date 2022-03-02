@@ -6,6 +6,7 @@ import EditAd from "../screens/editad/editad";
 import EditCategory from "../screens/editCategory/editCategory";
 import Reassignad from "../screens/reAssignAd/reAssignAd";
 import { PrivateRoute, PublicRoute } from "./privateRoute";
+import AdminChatApp from "../screens/chatApp/adminChatApp";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,9 @@ const AppRoutes = () => {
         </PrivateRoute>
         <PrivateRoute exact path="/reassignad">
           <Reassignad />
+        </PrivateRoute>
+        <PrivateRoute exact path="/chatapp">
+          <AdminChatApp />
         </PrivateRoute>
       </Switch>
     </Router>
