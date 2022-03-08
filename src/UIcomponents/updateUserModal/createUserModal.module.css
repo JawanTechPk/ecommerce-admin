@@ -1,0 +1,29 @@
+.userCreateBox {
+  padding: 0 !important;
+}
+.userCreateBox section {
+  padding: 8px;
+}
+.userCreateBox section label {
+  display: block;
+  margin-top: 10px;
+}
+.userCreateBox section input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  background-color: #f2eded;
+}
+.modalFooterBtn {
+  background-color: var(--main-color) !important;
+  border: none !important;
+}
+.modalFooterBtn:hover {
+  background-color: var(--hover-color) !important;
+}
+.modalFooterBtn:focus,
+.modalFooterBtn:active {
+  box-shadow: none !important;
+}
