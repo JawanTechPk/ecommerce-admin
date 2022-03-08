@@ -68,7 +68,7 @@ const Reassignadd = () => {
       <Navbar />
       <div className="container">
       <ToastContainer />
-        <h3 className="mt-5">All Users</h3>
+        <h3 className="mt-5">Reassign Ad</h3>
         <input
           placeholder="Search User"
           maxLength={15}

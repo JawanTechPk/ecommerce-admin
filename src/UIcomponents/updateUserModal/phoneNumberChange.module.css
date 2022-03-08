@@ -1,0 +1,25 @@
+.numberBox {
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.numberBox > div {
+  width: 100%;
+  /* border: 1px solid lime; */
+  padding: 15px;
+}
+.numberBox h5 {
+  text-align: center;
+  margin: 10px 0;
+}
+.numberBox label {
+  display: block;
+}
+.numberBox input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  border: 1px solid black;
+}
