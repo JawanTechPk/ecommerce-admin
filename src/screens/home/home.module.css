@@ -1161,3 +1161,30 @@ white-space: nowrap;
             }
           }
         
+
+.userTopBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}          
+
+.addNewBtn{
+  background-color: var(--main-color);
+  padding: 8px 30px 8px 15px;
+  border-radius: 25px;
+  color: white;
+}
+.plusIcon{
+  color: var(--main-color);
+  background-color: white;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 35px;
+  position: absolute;
+  top: 2px;
+  right: -10px;
+  border: 1px solid var(--main-color);
+
+}

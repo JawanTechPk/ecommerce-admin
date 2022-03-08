@@ -1,0 +1,38 @@
+.userUpdateBox {
+  padding: 0 !important;
+}
+.userUpdateBox ul {
+  padding: 5px;
+  margin: 0;
+}
+.userUpdateBox li {
+  list-style: none;
+  background-color: lightgray;
+  padding: 15px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 10px 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.userUpdateBox li:hover {
+  background-color: var(--hover-color);
+  color: white;
+}
+
+.modalMainBOx {
+  min-width: 40%;
+}
+
+.modalFooterBtn {
+  background-color: var(--main-color) !important;
+  border: none !important;
+}
+.modalFooterBtn:hover {
+  background-color: var(--hover-color) !important;
+}
+.modalFooterBtn:focus,
+.modalFooterBtn:active {
+  box-shadow: none !important;
+}

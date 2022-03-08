@@ -19,7 +19,7 @@ import {
   deleteProductAction,
   editAdData,
 } from "../../store/actions/settingAction/settingAction";
-import { BsPersonCircle, BsThreeDotsVertical } from "react-icons/bs";
+import { BsPersonCircle, BsThreeDotsVertical, BsPlusLg } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { FaSearch, FaUserCircle } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
@@ -30,6 +30,8 @@ import AddCategory from "../addCategory/addCategory";
 import { ToastContainer, toast } from "react-toastify";
 import reassign from "../../images/reassign.png";
 import ChatBtn from "../../UIcomponents/chatApp/chatBtn";
+import UpdateUserModal from "../../UIcomponents/updateUserModal/updateUserModal";
+import CreateUserModel from "../../UIcomponents/updateUserModal/createUserModel";
 const Home = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,6 +50,10 @@ const Home = () => {
     allTags,
     allProducts,
   } = useSelector((state) => state.settingReducer);
+
+  const { userUpdateMessage } = useSelector((state) => state.userUpdateReducer);
+  const { userCreateMessage } = useSelector((state) => state.createUserReducer);
+
   const [characters, updateCharacters] = useState(categories);
   const [cateDisplay, setCateDisplay] = useState(true);
   const [tagDisplay, setTagDisplay] = useState(false);
@@ -66,6 +72,12 @@ const Home = () => {
     dispatch(getAllUsersAction());
     dispatch(getAllProduct());
   }, []);
+  useEffect(() => {
+    if (userUpdateMessage || userCreateMessage) {
+      console.log("api call");
+      dispatch(getAllUsersAction());
+    }
+  }, [userUpdateMessage, userCreateMessage]);
 
   const deleteTag = (id, ind) => {
     dispatch(deleteTagAction(id, ind));
@@ -162,6 +174,25 @@ const Home = () => {
     dispatch(editAdData(val));
     history.push("/editad");
     sessionStorage.setItem("editaddata", JSON.stringify(val));
+  };
+
+  ///modal state
+  const [show, setShow] = useState(false);
+  const [createModalShow, setCreateModalShow] = useState(false);
+  const [selectedUser, setSelectedUser] = useState({});
+
+  ///modal close
+  const handleClose = () => setShow(false);
+  const createModalClose = () => setCreateModalShow(false);
+
+  ///modal open
+  const handleShow = (user) => {
+    setShow(true);
+    setSelectedUser(user);
+  };
+  const createModalShowFun = () => {
+    setCreateModalShow(true);
+    // setSelectedUser(user);
   };
 
   return (
@@ -379,7 +410,28 @@ const Home = () => {
         {/* USERS WORK START */}
         {usersDisplay ? (
           <>
-            <h3>All Users</h3>
+            <section className={Css.userTopBox}>
+              <h3>All Users</h3>
+              <section className={Css.addNewBtn} onClick={createModalShowFun}>
+                ADD NEW USER
+                <BsPlusLg className={Css.plusIcon} />
+              </section>
+            </section>
+
+            <UpdateUserModal
+              show={show}
+              setShow={setShow}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              selectedUser={selectedUser}
+            />
+
+            <CreateUserModel
+              createModalShow={createModalShow}
+              setCreateModalShow={setCreateModalShow}
+              createModalClose={createModalClose}
+              createModalShowFun={createModalShowFun}
+            />
             <div style={{ display: "flex", flexWrap: "wrap", marginTop: 30 }}>
               {isLoading ? (
                 <Loader />
@@ -407,6 +459,11 @@ const Home = () => {
                                       deleteUser(val._id, ind);
                                     }}
                                     className={Css.iconDelStl}
+                                  />
+                                  <FiEdit
+                                    className={Css.iconDelStl}
+                                    color="#008c8c"
+                                    onClick={() => handleShow(val)}
                                   />
                                 </td>
                               </tr>
@@ -438,6 +495,11 @@ const Home = () => {
                                     }}
                                     className={Css.iconDelStl}
                                   />
+                                  <FiEdit
+                                    className={Css.iconDelStl}
+                                    color="#008c8c"
+                                    onClick={() => handleShow(val)}
+                                  />
                                 </td>
                               </tr>
                             ) : null}
@@ -467,7 +529,7 @@ const Home = () => {
                   console.log(val, "val");
                   return (
                     <>
-                      <div className={Css.productDiv}>
+                      <div key={ind} className={Css.productDiv}>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <img
                             src={
