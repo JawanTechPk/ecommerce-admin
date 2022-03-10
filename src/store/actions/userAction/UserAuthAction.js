@@ -24,7 +24,7 @@ const UserLoginAction = (phoneNumber, password, history) => {
     });
     if (phoneNumber.trim() && password.trim()) {
 
-      axios.post(`${baseUrl}login`, {
+      axios.post(`${baseUrl}adminlogin`, {
         phone_number: "+"+phoneNumber,
         password: password
       })
