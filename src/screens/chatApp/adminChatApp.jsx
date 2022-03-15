@@ -46,6 +46,7 @@ const AdminChatApp = () => {
     const dbRef = ref(database, "/");
     let chatKey = [];
     onChildAdded(dbRef, (snapShot) => {
+      // console.log(snapShot.key.split("-")[1], "jhahaha");
       chatKey.push(snapShot.key);
       setFirebaseChat([...firebaseChat, ...chatKey]);
     });
@@ -65,6 +66,7 @@ const AdminChatApp = () => {
     });
   };
   useEffect(scrollToBottom, [firebaseRealMsg]);
+  console.log("firebaseSelectedChat", firebaseSelectedChat);
   return (
     <div className={Css.mainContainer}>
       <div className={Css.leftContainer}>
@@ -83,7 +85,7 @@ const AdminChatApp = () => {
                 <div className={Css.chatAvatar}>
                   <img src={profile} width={40} alt="profile" />
                 </div>
-                <div className={Css.phoneNumber}>{val}</div>
+                <div className={Css.phoneNumber}>{val.split("-")[1]}</div>
               </div>
             );
           })}
@@ -95,8 +97,7 @@ const AdminChatApp = () => {
             <img src={profileicon} width={60} alt="profile" />
           </div>
           <div className={Css.chatHeadphoneNumber}>
-            {" "}
-            {selectedChat?.customer?.phone_number}
+            {firebaseSelectedChat && firebaseSelectedChat.split("-")[1]}
           </div>
         </div>
 
