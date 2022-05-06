@@ -6,25 +6,28 @@ import { IoMdSend } from "react-icons/io";
 import Logo from "../../images/mainlogo.jpeg";
 import { database } from "../../config/firebase";
 import { onChildAdded, push, ref } from "firebase/database";
+import { format } from "timeago.js";
+import toast, {Toaster} from "react-hot-toast";
 
 const AdminChatApp = () => {
   const currentUserData = JSON.parse(localStorage.getItem("adminData"));
 
   const [message, setMessage] = useState("");
-  const [selectedChat, setSelectedChat] = useState({});
+  const [msg, setMsg] = useState([]);
 
   let [firebaseRealMsg, setfirebaseRealMsg] = useState([]);
   const [firebaseChat, setFirebaseChat] = useState([]);
   const [firebaseSelectedChat, setFirebaseSelectedChat] = useState("test");
 
-  const sendMessageHandler = async (e) => {
+  const sendMessageHandler = async (e)=> {
+    // console.log(msg)
     e.preventDefault();
-
     const dbRef = ref(database, firebaseSelectedChat);
-
     await push(dbRef, {
       userUid: currentUserData.userId,
       message: message,
+      timeStamps: String(new Date()), 
+
     });
     setMessage("");
   };
@@ -37,6 +40,7 @@ const AdminChatApp = () => {
     onChildAdded(dbRef, (snapShot) => {
       const todo = firebaseRealMsg;
       todo.push(snapShot.val());
+      // setMsg([...todo])
       setfirebaseRealMsg([...todo]);
     });
   }, [firebaseSelectedChat]);
@@ -67,8 +71,38 @@ const AdminChatApp = () => {
   };
   useEffect(scrollToBottom, [firebaseRealMsg]);
   console.log("firebaseSelectedChat", firebaseSelectedChat);
+
+  const copyRoomId = async (msg) => {
+    try {
+      await navigator.clipboard.writeText(msg);
+      toast.success("Message has been copied");
+    } catch (error) {
+      toast.error("Could not copy message");
+      console.error(error);
+    }
+  };
+
+
   return (
     <div className={Css.mainContainer}>
+       <Toaster
+          position="top-right"
+          toastOptions={{
+            success: {
+              style: {
+                fontSize: 16,
+                backgroundColor: "#1d8f50",
+                color: "#FFF",
+              },
+              iconTheme: {
+                primary: "#FFF",
+                secondary: "#1d8f50",
+              },
+            },
+           
+          
+          }}
+        ></Toaster>
       <div className={Css.leftContainer}>
         <div className={Css.head}>
           <img src={Logo} alt="renting logo" width={100} />
@@ -106,22 +140,29 @@ const AdminChatApp = () => {
         <div className={Css.chatBody}>
           {firebaseRealMsg.map((val, ind) => {
             return val.userUid === currentUserData.userId ? (
+              <>
               <div key={ind} className={`${Css.message} ${Css.myMessage}`}>
-                <p>
+                <p style={{cursor:"pointer"}} onClick={()=>  copyRoomId(val.message)}>
                   {val.message}
+                  
                   <br />
-                  {/* <span>12:15</span> */}
+                 
+                  <span>{format(val.timeStamps)}</span>
+
                 </p>
+               
               </div>
+              </>
             ) : (
               <div
                 key={ind}
                 className={`${Css.message} ${Css.incomingMessage}`}
               >
-                <p>
+               
+                <p style={{cursor:"pointer"}} onClick={()=>  copyRoomId(val.message)}>
                   {val.message}
                   <br />
-                  {/* <span>12:15</span> */}
+                  <span>{format(val.timeStamps)}</span>
                 </p>
               </div>
             );
