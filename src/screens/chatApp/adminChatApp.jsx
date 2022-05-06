@@ -6,6 +6,8 @@ import { IoMdSend } from "react-icons/io";
 import Logo from "../../images/mainlogo.jpeg";
 import { database } from "../../config/firebase";
 import { onChildAdded, push, ref } from "firebase/database";
+import { format } from "timeago.js";
+import toast, { Toaster } from "react-hot-toast";
 
 
 // import {baseUrl} from '../../util/utils';
@@ -91,11 +93,39 @@ const AdminChatApp = () => {
     });
   };
   useEffect(scrollToBottom, [firebaseRealMsg]);
-  // console.log("firebaseSelectedChat", firebaseSelectedChat);
+  console.log("firebaseSelectedChat", firebaseSelectedChat);
+
+  const copyMessage = async (msg) => {
+    try {
+      await navigator.clipboard.writeText(msg);
+      toast.success("Message has been copied");
+    } catch (error) {
+      toast.error("Could not copy message");
+      console.error(error);
+    }
+  };
 
 
   return (
     <div className={Css.mainContainer}>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          success: {
+            style: {
+              fontSize: 16,
+              backgroundColor: "#1d8f50",
+              color: "#FFF",
+            },
+            iconTheme: {
+              primary: "#FFF",
+              secondary: "#1d8f50",
+            },
+          },
+
+
+        }}
+      ></Toaster>
       <div className={Css.leftContainer}>
         <div className={Css.head}>
           <img src={Logo} alt="renting logo" width={100} />
@@ -133,22 +163,29 @@ const AdminChatApp = () => {
         <div className={Css.chatBody}>
           {firebaseRealMsg.map((val, ind) => {
             return val.userUid === currentUserData.userId ? (
-              <div key={ind} className={`${Css.message} ${Css.myMessage}`}>
-                <p>
-                  {val.message}
-                  <br />
-                  {/* <span>12:15</span> */}
-                </p>
-              </div>
+              <>
+                <div key={ind} className={`${Css.message} ${Css.myMessage}`}>
+                  <p style={{ cursor: "pointer" }} onClick={() => copyMessage(val.message)}>
+                    {val.message}
+
+                    <br />
+
+                    <span>{format(val.timeStamps)}</span>
+
+                  </p>
+
+                </div>
+              </>
             ) : (
               <div
                 key={ind}
                 className={`${Css.message} ${Css.incomingMessage}`}
               >
-                <p>
+
+                <p style={{ cursor: "pointer" }} onClick={() => copyRoomId(val.message)}>
                   {val.message}
                   <br />
-                  {/* <span>12:15</span> */}
+                  <span>{format(val.timeStamps)}</span>
                 </p>
               </div>
             );
