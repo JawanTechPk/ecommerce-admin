@@ -182,7 +182,7 @@ const AdminChatApp = () => {
                 className={`${Css.message} ${Css.incomingMessage}`}
               >
 
-                <p style={{ cursor: "pointer" }} onClick={() => copyRoomId(val.message)}>
+                <p style={{ cursor: "pointer" }} onClick={() => copyMessage(val.message)}>
                   {val.message}
                   <br />
                   <span>{format(val.timeStamps)}</span>
