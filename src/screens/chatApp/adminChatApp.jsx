@@ -36,7 +36,7 @@ const AdminChatApp = () => {
     });
     setMessage("");
 
-    axios.post('http://localhost:5000/api/v1/admin/fcmNotification', {
+    axios.post('https://renting-app.herokuapp.com/api/v1/admin/fcmNotification', {
       message,
       firebaseSelectedChat,
       tokken
