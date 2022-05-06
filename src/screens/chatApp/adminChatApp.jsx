@@ -7,43 +7,61 @@ import Logo from "../../images/mainlogo.jpeg";
 import { database } from "../../config/firebase";
 import { onChildAdded, push, ref } from "firebase/database";
 
+
+// import {baseUrl} from '../../util/utils';
+import axios from "axios";
+
 const AdminChatApp = () => {
   const currentUserData = JSON.parse(localStorage.getItem("adminData"));
 
   const [message, setMessage] = useState("");
-  const [selectedChat, setSelectedChat] = useState({});
 
   let [firebaseRealMsg, setfirebaseRealMsg] = useState([]);
   const [firebaseChat, setFirebaseChat] = useState([]);
   const [firebaseSelectedChat, setFirebaseSelectedChat] = useState("test");
 
+  const [tokken, setTokken] = useState("");
+
   const sendMessageHandler = async (e) => {
     e.preventDefault();
 
-    const dbRef = ref(database, firebaseSelectedChat);
+    const dbRef = ref(database, `/chats/${firebaseSelectedChat}`);
 
     await push(dbRef, {
       userUid: currentUserData.userId,
       message: message,
+      timeStamps: String(new Date()),
     });
     setMessage("");
-  };
+
+    axios.post('http://localhost:5000/api/v1/admin/fcmNotification', {
+      message,
+      firebaseSelectedChat,
+      tokken
+    }).then(res => {
+      console.log(res.data);
+    }).catch(err => {
+      console.log(err);
+    });
+
+  }
 
   useEffect(() => {
-    const dbRef = ref(database, firebaseSelectedChat);
+    const dbRef = ref(database, `/chats/${firebaseSelectedChat}`);
 
     firebaseRealMsg = [];
 
     onChildAdded(dbRef, (snapShot) => {
       const todo = firebaseRealMsg;
       todo.push(snapShot.val());
+      // console.log("*** Click -->", snapShot.val())
       setfirebaseRealMsg([...todo]);
     });
   }, [firebaseSelectedChat]);
 
   ///get all chats uid///
   useEffect(async () => {
-    const dbRef = ref(database, "/");
+    const dbRef = ref(database, "/chats");
     let chatKey = [];
     onChildAdded(dbRef, (snapShot) => {
       // console.log(snapShot.key.split("-")[1], "jhahaha");
@@ -54,6 +72,13 @@ const AdminChatApp = () => {
 
   const singleChat = (currentChat) => {
     setFirebaseSelectedChat(firebaseChat[currentChat]);
+
+    const reference = ref(database, `/users/${firebaseChat[currentChat]}`);
+
+    onChildAdded(reference, (snapShot) => {
+      setTokken(snapShot.val());
+    })
+
   };
 
   const messagesEndRef = useRef(null);
@@ -66,7 +91,9 @@ const AdminChatApp = () => {
     });
   };
   useEffect(scrollToBottom, [firebaseRealMsg]);
-  console.log("firebaseSelectedChat", firebaseSelectedChat);
+  // console.log("firebaseSelectedChat", firebaseSelectedChat);
+
+
   return (
     <div className={Css.mainContainer}>
       <div className={Css.leftContainer}>
